@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "documentDocumentType": {
+      "home": {
+        "title": "Document Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Document Type",
+        "createOrEditLabel": "Create or edit a Document Type",
+        "notFound": "No Document Types found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Document Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Document Type"
+      },
+      "id": "ID",
+      "documentTypeName": "Document Type Name"
+    }
+  },
+  "documentApp": {
+    "documentDocumentType": {
+      "created": "A new Document Type is created with identifier {{ param }}",
+      "updated": "A Document Type is updated with identifier {{ param }}",
+      "deleted": "A Document Type is deleted with identifier {{ param }}"
+    }
+  }
+}

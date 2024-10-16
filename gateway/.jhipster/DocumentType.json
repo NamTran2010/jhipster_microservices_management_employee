@@ -1,0 +1,25 @@
+{
+  "microservicePath": "../document",
+  "name": "DocumentType",
+  "fields": [
+    {
+      "fieldName": "documentTypeName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "document_type",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "document",
+  "clientRootFolder": "document",
+  "databaseType": "sql",
+  "changelogDate": "20241015093536"
+}

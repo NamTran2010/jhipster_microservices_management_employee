@@ -1,0 +1,21 @@
+// Document Entities
+entity Document {
+  documentName String required,
+  description String,
+  employeeId Long required // Tham chiếu đến Employee ID
+}
+
+entity DocumentType {
+  documentTypeName String required
+}
+
+// Document Relationships (không có mối quan hệ trực tiếp với Employee)
+relationship ManyToOne {
+  Document{documentType} to DocumentType
+}
+
+
+// DTO và Service Generation
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

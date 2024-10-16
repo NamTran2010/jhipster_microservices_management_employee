@@ -39,6 +39,8 @@
     "skipCommitHook": true,
     "jwtSecretKey": "MzA0OGFkNWI4NWVkZjk5MzMyYjk4NTZiM2Q3MmI3MzY4ZTViZDc1NGE1ZDIxMzhkMzg1OWNjOTc5ZTFjZDMwMGNmYTIzOWI2MjE2ZWExY2I0YTZiMzNlODkzOWJjZTU4ODA5MWJiMGJjYmM5YjRmNmUwMGZhZjdlMjliMzQ2Zjg=",
     "languages": ["en"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Employee", "Job", "Department", "JobHistory"],
+    "lastLiquibaseTimestamp": 1728984969000
   }
 }

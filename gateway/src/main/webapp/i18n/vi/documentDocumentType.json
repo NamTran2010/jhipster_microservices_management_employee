@@ -1,0 +1,28 @@
+{
+  "gatewayApp": {
+    "documentDocumentType": {
+      "home": {
+        "title": "Document Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Document Type",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Document Type",
+        "notFound": "No Document Types found"
+      },
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Document Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Document Type"
+      },
+      "id": "ID",
+      "documentTypeName": "Document Type Name"
+    }
+  },
+  "documentApp": {
+    "documentDocumentType": {
+      "created": "Một Document Type mới được tạo với định danh {{ param }}",
+      "updated": "Một Document Type cập nhật với định danh {{ param }}",
+      "deleted": "Một Document Type đã xóa với định danh {{ param }}"
+    }
+  }
+}

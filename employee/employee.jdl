@@ -1,0 +1,46 @@
+entity Employee {
+  name String required,
+  hireDate ZonedDateTime required,
+  salary BigDecimal required
+}
+
+entity Job {
+  jobName String required,
+  description String,
+}
+
+entity Department {
+  departmentName String required,
+  description String
+}
+
+entity JobHistory {
+  startDate ZonedDateTime required,
+  endDate ZonedDateTime,
+  salary BigDecimal required
+}
+
+relationship ManyToOne {
+  Employee{job(jobName)} to Job
+}
+
+relationship ManyToOne {
+  Employee{department(departmentName)} to Department
+}
+
+relationship ManyToOne {
+  Job{department(departmentName)} to Department
+}
+
+relationship ManyToOne {
+  JobHistory{job(jobName)} to Job
+}
+
+relationship ManyToOne {
+  JobHistory{employee(name)} to Employee
+}
+
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

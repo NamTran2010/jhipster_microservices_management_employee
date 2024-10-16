@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="job">
+      <h2 data-cy="jobDetailsHeading"><span jhiTranslate="gatewayApp.employeeJob.detail.title">Job</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ job.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.employeeJob.jobName">Job Name</span></dt>
+        <dd>
+          <span>{{ job.jobName }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.employeeJob.description">Description</span></dt>
+        <dd>
+          <span>{{ job.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.employeeJob.department">Department</span></dt>
+        <dd>
+          <div *ngIf="job.department">
+            <a [routerLink]="['/department', job.department?.id, 'view']">{{ job.department?.departmentName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job', job.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

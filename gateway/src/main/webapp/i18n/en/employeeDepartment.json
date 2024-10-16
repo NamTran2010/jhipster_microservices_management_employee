@@ -1,0 +1,29 @@
+{
+  "gatewayApp": {
+    "employeeDepartment": {
+      "home": {
+        "title": "Departments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Department",
+        "createOrEditLabel": "Create or edit a Department",
+        "notFound": "No Departments found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Department {{ id }}?"
+      },
+      "detail": {
+        "title": "Department"
+      },
+      "id": "ID",
+      "departmentName": "Department Name",
+      "description": "Description"
+    }
+  },
+  "employeeApp": {
+    "employeeDepartment": {
+      "created": "A new Department is created with identifier {{ param }}",
+      "updated": "A Department is updated with identifier {{ param }}",
+      "deleted": "A Department is deleted with identifier {{ param }}"
+    }
+  }
+}

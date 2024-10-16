@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-document-heading" data-cy="DocumentCreateUpdateHeading" jhiTranslate="gatewayApp.documentDocument.home.createOrEditLabel">
+        Create or edit a Document
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.documentName" for="field_documentName"
+            >Document Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="documentName"
+            id="field_documentName"
+            data-cy="documentName"
+            formControlName="documentName"
+          />
+          <div
+            *ngIf="editForm.get('documentName')!.invalid && (editForm.get('documentName')!.dirty || editForm.get('documentName')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('documentName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.employeeId" for="field_employeeId">Employee Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="employeeId"
+            id="field_employeeId"
+            data-cy="employeeId"
+            formControlName="employeeId"
+          />
+          <div *ngIf="editForm.get('employeeId')!.invalid && (editForm.get('employeeId')!.dirty || editForm.get('employeeId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('employeeId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('employeeId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.documentType" for="field_documentType"
+            >Document Type</label
+          >
+          <select class="form-control" id="field_documentType" data-cy="documentType" name="documentType" formControlName="documentType">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                documentTypeOption.documentTypeName === editForm.get('documentType')!.value?.name ? editForm.get('documentType')!.value : documentTypeOption
+              "
+              *ngFor="let documentTypeOption of documentTypesSharedCollection; trackBy: trackDocumentTypeById"
+            >
+              {{ documentTypeOption.documentTypeName}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

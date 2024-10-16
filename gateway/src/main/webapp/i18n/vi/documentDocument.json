@@ -1,0 +1,31 @@
+{
+  "gatewayApp": {
+    "documentDocument": {
+      "home": {
+        "title": "Documents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Document",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Document",
+        "notFound": "No Documents found"
+      },
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Document {{ id }}?"
+      },
+      "detail": {
+        "title": "Document"
+      },
+      "id": "ID",
+      "documentName": "Document Name",
+      "description": "Description",
+      "employeeId": "Employee Id",
+      "documentType": "Document Type"
+    }
+  },
+  "documentApp": {
+    "documentDocument": {
+      "created": "Một Document mới được tạo với định danh {{ param }}",
+      "updated": "Một Document cập nhật với định danh {{ param }}",
+      "deleted": "Một Document đã xóa với định danh {{ param }}"
+    }
+  }
+}

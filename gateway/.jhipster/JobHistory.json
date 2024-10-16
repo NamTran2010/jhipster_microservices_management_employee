@@ -1,0 +1,49 @@
+{
+  "microservicePath": "../employee",
+  "name": "JobHistory",
+  "fields": [
+    {
+      "fieldName": "startDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "salary",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "job",
+      "otherEntityRelationshipName": "jobHistory",
+      "relationshipName": "job",
+      "otherEntityField": "jobName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "jobHistory",
+      "relationshipName": "employee",
+      "otherEntityField": "name"
+    }
+  ],
+  "entityTableName": "job_history",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "employee",
+  "clientRootFolder": "employee",
+  "databaseType": "sql",
+  "changelogDate": "20241015093609"
+}

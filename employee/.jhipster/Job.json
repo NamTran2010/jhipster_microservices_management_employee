@@ -1,0 +1,36 @@
+{
+  "name": "Job",
+  "fields": [
+    {
+      "fieldName": "jobName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "job",
+      "relationshipName": "department",
+      "otherEntityField": "departmentName"
+    }
+  ],
+  "entityTableName": "job",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "employee",
+  "clientRootFolder": "employee",
+  "databaseType": "sql",
+  "changelogDate": "20241015093607"
+}

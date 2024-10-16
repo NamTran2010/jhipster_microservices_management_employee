@@ -44,6 +44,7 @@
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
     "languages": ["en", "vi"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Department", "Job", "Employee", "JobHistory", "DocumentType", "Document"]
   }
 }

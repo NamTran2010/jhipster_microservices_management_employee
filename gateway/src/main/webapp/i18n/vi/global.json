@@ -7,6 +7,12 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Thực thể",
+        "employeeDepartment": "Department",
+        "employeeJob": "Job",
+        "employeeEmployee": "Employee",
+        "employeeJobHistory": "Job History",
+        "documentDocumentType": "Document Type",
+        "documentDocument": "Document",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

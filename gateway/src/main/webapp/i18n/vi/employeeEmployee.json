@@ -1,0 +1,32 @@
+{
+  "gatewayApp": {
+    "employeeEmployee": {
+      "home": {
+        "title": "Employees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Employee",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Employee",
+        "notFound": "No Employees found"
+      },
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Employee {{ id }}?"
+      },
+      "detail": {
+        "title": "Employee"
+      },
+      "id": "ID",
+      "name": "Name",
+      "hireDate": "Hire Date",
+      "salary": "Salary",
+      "job": "Job",
+      "department": "Department"
+    }
+  },
+  "employeeApp": {
+    "employeeEmployee": {
+      "created": "Một Employee mới được tạo với định danh {{ param }}",
+      "updated": "Một Employee cập nhật với định danh {{ param }}",
+      "deleted": "Một Employee đã xóa với định danh {{ param }}"
+    }
+  }
+}

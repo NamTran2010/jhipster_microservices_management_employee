@@ -1,0 +1,28 @@
+{
+  "name": "Department",
+  "fields": [
+    {
+      "fieldName": "departmentName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "department",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "employee",
+  "clientRootFolder": "employee",
+  "databaseType": "sql",
+  "changelogDate": "20241015093608"
+}

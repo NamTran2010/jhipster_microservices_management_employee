@@ -1,0 +1,41 @@
+{
+  "microservicePath": "../document",
+  "name": "Document",
+  "fields": [
+    {
+      "fieldName": "documentName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employeeId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "documentType",
+      "otherEntityRelationshipName": "document",
+      "relationshipName": "documentType"
+    }
+  ],
+  "entityTableName": "document",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "document",
+  "clientRootFolder": "document",
+  "databaseType": "sql",
+  "changelogDate": "20241015093535"
+}

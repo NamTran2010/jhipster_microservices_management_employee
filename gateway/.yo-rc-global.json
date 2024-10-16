@@ -2,7 +2,8 @@
   "generator-jhipster:7.3.0": {
     "promptValues": {
       "packageName": "com.leap.gateway",
-      "nativeLanguage": "en"
+      "nativeLanguage": "en",
+      "microservicePath": "../document"
     }
   }
 }

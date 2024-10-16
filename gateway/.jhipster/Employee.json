@@ -1,0 +1,50 @@
+{
+  "microservicePath": "../employee",
+  "name": "Employee",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hireDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "salary",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "job",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "job",
+      "otherEntityField": "jobName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "department",
+      "otherEntityField": "departmentName"
+    }
+  ],
+  "entityTableName": "employee",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "microserviceName": "employee",
+  "clientRootFolder": "employee",
+  "databaseType": "sql",
+  "changelogDate": "20241015093606"
+}

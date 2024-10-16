@@ -1,0 +1,30 @@
+{
+  "gatewayApp": {
+    "employeeJob": {
+      "home": {
+        "title": "Jobs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Thêm mới một Job",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Job",
+        "notFound": "No Jobs found"
+      },
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Job {{ id }}?"
+      },
+      "detail": {
+        "title": "Job"
+      },
+      "id": "ID",
+      "jobName": "Job Name",
+      "description": "Description",
+      "department": "Department"
+    }
+  },
+  "employeeApp": {
+    "employeeJob": {
+      "created": "Một Job mới được tạo với định danh {{ param }}",
+      "updated": "Một Job cập nhật với định danh {{ param }}",
+      "deleted": "Một Job đã xóa với định danh {{ param }}"
+    }
+  }
+}

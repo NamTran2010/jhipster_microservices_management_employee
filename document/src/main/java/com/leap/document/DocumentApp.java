@@ -15,10 +15,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.leap.document.repository")
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
 public class DocumentApp {
 
