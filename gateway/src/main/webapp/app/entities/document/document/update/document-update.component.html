@@ -88,7 +88,7 @@
             <option [ngValue]="null"></option>
             <option
               [ngValue]="
-                documentTypeOption.documentTypeName === editForm.get('documentType')!.value?.name ? editForm.get('documentType')!.value : documentTypeOption
+                documentTypeOption.id === editForm.get('documentType')!.value?.id ? editForm.get('documentType')!.value : documentTypeOption
               "
               *ngFor="let documentTypeOption of documentTypesSharedCollection; trackBy: trackDocumentTypeById"
             >

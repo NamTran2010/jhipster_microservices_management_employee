@@ -29,7 +29,7 @@
         <dt><span jhiTranslate="gatewayApp.documentDocument.documentType">Document Type</span></dt>
         <dd>
           <div *ngIf="document.documentType">
-            <a [routerLink]="['/document-type', document.documentType?.id, 'view']">{{ document.documentType?.id }}</a>
+            <a [routerLink]="['/document-type', document.documentType?.id, 'view']">{{ document.documentType?.documentTypeName }}</a>
           </div>
         </dd>
       </dl>
