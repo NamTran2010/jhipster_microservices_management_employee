@@ -13,6 +13,8 @@ import { IJob } from 'app/entities/employee/job/job.model';
 import { JobService } from 'app/entities/employee/job/service/job.service';
 import { IEmployee } from 'app/entities/employee/employee/employee.model';
 import { EmployeeService } from 'app/entities/employee/employee/service/employee.service';
+import { IDepartment } from 'app/entities/employee/department/department.model';
+import { DepartmentService } from 'app/entities/employee/department/service/department.service';
 
 import { JobHistoryUpdateComponent } from './job-history-update.component';
 
@@ -24,6 +26,7 @@ describe('Component Tests', () => {
     let jobHistoryService: JobHistoryService;
     let jobService: JobService;
     let employeeService: EmployeeService;
+    let departmentService: DepartmentService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -39,6 +42,7 @@ describe('Component Tests', () => {
       jobHistoryService = TestBed.inject(JobHistoryService);
       jobService = TestBed.inject(JobService);
       employeeService = TestBed.inject(EmployeeService);
+      departmentService = TestBed.inject(DepartmentService);
 
       comp = fixture.componentInstance;
     });
@@ -82,12 +86,33 @@ describe('Component Tests', () => {
         expect(comp.employeesSharedCollection).toEqual(expectedCollection);
       });
 
+      it('Should call Department query and add missing value', () => {
+        const jobHistory: IJobHistory = { id: 456 };
+        const department: IDepartment = { id: 6911 };
+        jobHistory.department = department;
+
+        const departmentCollection: IDepartment[] = [{ id: 12924 }];
+        jest.spyOn(departmentService, 'query').mockReturnValue(of(new HttpResponse({ body: departmentCollection })));
+        const additionalDepartments = [department];
+        const expectedCollection: IDepartment[] = [...additionalDepartments, ...departmentCollection];
+        jest.spyOn(departmentService, 'addDepartmentToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+        activatedRoute.data = of({ jobHistory });
+        comp.ngOnInit();
+
+        expect(departmentService.query).toHaveBeenCalled();
+        expect(departmentService.addDepartmentToCollectionIfMissing).toHaveBeenCalledWith(departmentCollection, ...additionalDepartments);
+        expect(comp.departmentsSharedCollection).toEqual(expectedCollection);
+      });
+
       it('Should update editForm', () => {
         const jobHistory: IJobHistory = { id: 456 };
         const job: IJob = { id: 96728 };
         jobHistory.job = job;
         const employee: IEmployee = { id: 88001 };
         jobHistory.employee = employee;
+        const department: IDepartment = { id: 42374 };
+        jobHistory.department = department;
 
         activatedRoute.data = of({ jobHistory });
         comp.ngOnInit();
@@ -95,6 +120,7 @@ describe('Component Tests', () => {
         expect(comp.editForm.value).toEqual(expect.objectContaining(jobHistory));
         expect(comp.jobsSharedCollection).toContain(job);
         expect(comp.employeesSharedCollection).toContain(employee);
+        expect(comp.departmentsSharedCollection).toContain(department);
       });
     });
 
@@ -175,6 +201,14 @@ describe('Component Tests', () => {
         it('Should return tracked Employee primary key', () => {
           const entity = { id: 123 };
           const trackResult = comp.trackEmployeeById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
+      });
+
+      describe('trackDepartmentById', () => {
+        it('Should return tracked Department primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackDepartmentById(0, entity);
           expect(trackResult).toEqual(entity.id);
         });
       });

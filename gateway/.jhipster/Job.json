@@ -33,5 +33,5 @@
   "microserviceName": "employee",
   "clientRootFolder": "employee",
   "databaseType": "sql",
-  "changelogDate": "20241017085355"
+  "changelogDate": "20241017103500"
 }

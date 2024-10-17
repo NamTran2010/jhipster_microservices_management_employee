@@ -18,7 +18,8 @@
       "startDate": "Start Date",
       "salary": "Salary",
       "job": "Job",
-      "employee": "Employee"
+      "employee": "Employee",
+      "department": "Department"
     }
   },
   "employeeApp": {

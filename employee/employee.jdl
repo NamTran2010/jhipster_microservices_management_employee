@@ -39,6 +39,10 @@ relationship ManyToOne {
   JobHistory{employee(name)} to Employee
 }
 
+relationship ManyToOne {
+  JobHistory{department(departmentName)} to Department
+}
+
 
 dto * with mapstruct
 service * with serviceClass

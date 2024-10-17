@@ -34,6 +34,12 @@
             <a [routerLink]="['/employee', jobHistory.employee?.id, 'view']">{{ jobHistory.employee?.name }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="gatewayApp.employeeJobHistory.department">Department</span></dt>
+        <dd>
+          <div *ngIf="jobHistory.department">
+            <a [routerLink]="['/department', jobHistory.department?.id, 'view']">{{ jobHistory.department?.departmentName }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

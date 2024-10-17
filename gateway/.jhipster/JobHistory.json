@@ -27,6 +27,13 @@
       "otherEntityRelationshipName": "jobHistory",
       "relationshipName": "employee",
       "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "department",
+      "otherEntityRelationshipName": "jobHistory",
+      "relationshipName": "department",
+      "otherEntityField": "departmentName"
     }
   ],
   "entityTableName": "job_history",
@@ -41,5 +48,5 @@
   "microserviceName": "employee",
   "clientRootFolder": "employee",
   "databaseType": "sql",
-  "changelogDate": "20241017085357"
+  "changelogDate": "20241017103502"
 }

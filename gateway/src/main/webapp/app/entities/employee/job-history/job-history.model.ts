@@ -1,6 +1,7 @@
 import * as dayjs from 'dayjs';
 import { IJob } from 'app/entities/employee/job/job.model';
 import { IEmployee } from 'app/entities/employee/employee/employee.model';
+import { IDepartment } from 'app/entities/employee/department/department.model';
 
 export interface IJobHistory {
   id?: number;
@@ -8,6 +9,7 @@ export interface IJobHistory {
   salary?: number;
   job?: IJob | null;
   employee?: IEmployee | null;
+  department?: IDepartment | null;
 }
 
 export class JobHistory implements IJobHistory {
@@ -16,7 +18,8 @@ export class JobHistory implements IJobHistory {
     public startDate?: dayjs.Dayjs,
     public salary?: number,
     public job?: IJob | null,
-    public employee?: IEmployee | null
+    public employee?: IEmployee | null,
+    public department?: IDepartment | null
   ) {}
 }
 

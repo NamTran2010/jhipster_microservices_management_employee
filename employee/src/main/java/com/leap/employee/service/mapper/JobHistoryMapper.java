@@ -7,9 +7,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link JobHistory} and its DTO {@link JobHistoryDTO}.
  */
-@Mapper(componentModel = "spring", uses = { JobMapper.class, EmployeeMapper.class })
+@Mapper(componentModel = "spring", uses = { JobMapper.class, EmployeeMapper.class, DepartmentMapper.class })
 public interface JobHistoryMapper extends EntityMapper<JobHistoryDTO, JobHistory> {
     @Mapping(target = "job", source = "job", qualifiedByName = "jobName")
     @Mapping(target = "employee", source = "employee", qualifiedByName = "name")
+    @Mapping(target = "department", source = "department", qualifiedByName = "departmentName")
     JobHistoryDTO toDto(JobHistory s);
 }

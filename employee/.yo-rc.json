@@ -16,7 +16,7 @@
     "blueprints": [],
     "otherModules": [],
     "pages": [],
-    "creationTimestamp": 1729153514633,
+    "creationTimestamp": 1729161204118,
     "serviceDiscoveryType": "eureka",
     "reactive": false,
     "authenticationType": "jwt",
@@ -37,10 +37,10 @@
     "nativeLanguage": "en",
     "monorepository": true,
     "skipCommitHook": true,
-    "jwtSecretKey": "OGM0NTZlOGE1MDg3MTNiZDYzMTdjZjQ2MGYyMmU0ZWZiNDQ2YzMwMzk5MTVjOWJhYzkyMWU3YWI5Yzg2YmRmYjc1ODQ0N2U3ZGYyOGYzNjc4Mzc3M2VmMmY2NWI1ZWZlYzNlYjRkZGZlYjFkZmY0YzQ1MmRlMTExNjM2ZjZiNjc=",
+    "jwtSecretKey": "MjM3Mjk1YTc1YTY4MjcxNGI1ZmM3YjkxNWE1Yjc1M2MyZDQyZDI1YmY0YzFiYWE4ZjAxZGUzNjZlYWQzMGUzMGYyNDZiMzZlY2YzMmM2NzVmZmJkN2I1ZGNmZGI4NGQwZmJhZjFjMjZjM2QzMDE2MmVkZTgyY2QwYTI0ZDNkNzk=",
     "languages": ["en", "vi"],
     "enableGradleEnterprise": false,
     "entities": ["Employee", "Job", "Department", "JobHistory"],
-    "lastLiquibaseTimestamp": 1729155237000
+    "lastLiquibaseTimestamp": 1729161302000
   }
 }

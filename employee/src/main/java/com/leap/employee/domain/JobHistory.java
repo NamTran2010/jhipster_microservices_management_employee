@@ -40,6 +40,9 @@ public class JobHistory implements Serializable {
     @JsonIgnoreProperties(value = { "job", "department" }, allowSetters = true)
     private Employee employee;
 
+    @ManyToOne
+    private Department department;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -104,6 +107,19 @@ public class JobHistory implements Serializable {
 
     public JobHistory employee(Employee employee) {
         this.setEmployee(employee);
+        return this;
+    }
+
+    public Department getDepartment() {
+        return this.department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public JobHistory department(Department department) {
+        this.setDepartment(department);
         return this;
     }
 

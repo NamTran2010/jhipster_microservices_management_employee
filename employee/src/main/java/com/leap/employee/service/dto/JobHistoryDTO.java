@@ -23,6 +23,8 @@ public class JobHistoryDTO implements Serializable {
 
     private EmployeeDTO employee;
 
+    private DepartmentDTO department;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class JobHistoryDTO implements Serializable {
         this.employee = employee;
     }
 
+    public DepartmentDTO getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentDTO department) {
+        this.department = department;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -93,6 +103,7 @@ public class JobHistoryDTO implements Serializable {
             ", salary=" + getSalary() +
             ", job=" + getJob() +
             ", employee=" + getEmployee() +
+            ", department=" + getDepartment() +
             "}";
     }
 }
