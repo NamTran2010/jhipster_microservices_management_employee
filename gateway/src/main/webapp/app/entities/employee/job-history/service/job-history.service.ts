@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IJobHistory, getJobHistoryIdentifier } from '../job-history.model';
@@ -78,15 +79,13 @@ export class JobHistoryService {
 
   protected convertDateFromClient(jobHistory: IJobHistory): IJobHistory {
     return Object.assign({}, jobHistory, {
-      startDate: jobHistory.startDate?.isValid() ? jobHistory.startDate.toJSON() : undefined,
-      endDate: jobHistory.endDate?.isValid() ? jobHistory.endDate.toJSON() : undefined,
+      startDate: jobHistory.startDate?.isValid() ? jobHistory.startDate.format(DATE_FORMAT) : undefined,
     });
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.startDate = res.body.startDate ? dayjs(res.body.startDate) : undefined;
-      res.body.endDate = res.body.endDate ? dayjs(res.body.endDate) : undefined;
     }
     return res;
   }
@@ -95,7 +94,6 @@ export class JobHistoryService {
     if (res.body) {
       res.body.forEach((jobHistory: IJobHistory) => {
         jobHistory.startDate = jobHistory.startDate ? dayjs(jobHistory.startDate) : undefined;
-        jobHistory.endDate = jobHistory.endDate ? dayjs(jobHistory.endDate) : undefined;
       });
     }
     return res;

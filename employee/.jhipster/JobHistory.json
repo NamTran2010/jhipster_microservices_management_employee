@@ -3,12 +3,8 @@
   "fields": [
     {
       "fieldName": "startDate",
-      "fieldType": "ZonedDateTime",
+      "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "endDate",
-      "fieldType": "ZonedDateTime"
     },
     {
       "fieldName": "salary",
@@ -44,5 +40,5 @@
   "microserviceName": "employee",
   "clientRootFolder": "employee",
   "databaseType": "sql",
-  "changelogDate": "20241015093609"
+  "changelogDate": "20241017085357"
 }

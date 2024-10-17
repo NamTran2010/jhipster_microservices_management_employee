@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import * as dayjs from 'dayjs';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { IEmployee, Employee } from '../employee.model';
 import { EmployeeService } from '../service/employee.service';
 import { IJob } from 'app/entities/employee/job/job.model';
@@ -44,11 +41,6 @@ export class EmployeeUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ employee }) => {
-      if (employee.id === undefined) {
-        const today = dayjs().startOf('day');
-        employee.hireDate = today;
-      }
-
       this.updateForm(employee);
 
       this.loadRelationshipsOptions();
@@ -100,7 +92,7 @@ export class EmployeeUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: employee.id,
       name: employee.name,
-      hireDate: employee.hireDate ? employee.hireDate.format(DATE_TIME_FORMAT) : null,
+      hireDate: employee.hireDate,
       salary: employee.salary,
       job: employee.job,
       department: employee.department,
@@ -136,7 +128,7 @@ export class EmployeeUpdateComponent implements OnInit {
       ...new Employee(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      hireDate: this.editForm.get(['hireDate'])!.value ? dayjs(this.editForm.get(['hireDate'])!.value, DATE_TIME_FORMAT) : undefined,
+      hireDate: this.editForm.get(['hireDate'])!.value,
       salary: this.editForm.get(['salary'])!.value,
       job: this.editForm.get(['job'])!.value,
       department: this.editForm.get(['department'])!.value,

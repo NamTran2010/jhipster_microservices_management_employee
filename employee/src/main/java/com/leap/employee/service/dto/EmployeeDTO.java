@@ -2,7 +2,7 @@ package com.leap.employee.service.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
@@ -17,7 +17,7 @@ public class EmployeeDTO implements Serializable {
     private String name;
 
     @NotNull
-    private ZonedDateTime hireDate;
+    private LocalDate hireDate;
 
     @NotNull
     private BigDecimal salary;
@@ -42,11 +42,11 @@ public class EmployeeDTO implements Serializable {
         this.name = name;
     }
 
-    public ZonedDateTime getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(ZonedDateTime hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 

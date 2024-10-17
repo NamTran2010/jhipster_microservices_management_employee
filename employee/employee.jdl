@@ -1,6 +1,6 @@
 entity Employee {
   name String required,
-  hireDate ZonedDateTime required,
+  hireDate LocalDate required,
   salary BigDecimal required
 }
 
@@ -15,8 +15,7 @@ entity Department {
 }
 
 entity JobHistory {
-  startDate ZonedDateTime required,
-  endDate ZonedDateTime,
+  startDate LocalDate required,
   salary BigDecimal required
 }
 

@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface DocumentTypeMapper extends EntityMapper<DocumentTypeDTO, DocumentType> {
-    @Named("id")
+    @Named("documentTypeName")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    DocumentTypeDTO toDtoId(DocumentType documentType);
+    @Mapping(target = "documentTypeName", source = "documentTypeName")
+    DocumentTypeDTO toDtoDocumentTypeName(DocumentType documentType);
 }

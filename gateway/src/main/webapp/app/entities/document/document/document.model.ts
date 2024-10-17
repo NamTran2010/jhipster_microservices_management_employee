@@ -2,18 +2,18 @@ import { IDocumentType } from 'app/entities/document/document-type/document-type
 
 export interface IDocument {
   id?: number;
+  employeeId?: number;
   documentName?: string;
   description?: string | null;
-  employeeId?: number;
   documentType?: IDocumentType | null;
 }
 
 export class Document implements IDocument {
   constructor(
     public id?: number,
+    public employeeId?: number,
     public documentName?: string,
     public description?: string | null,
-    public employeeId?: number,
     public documentType?: IDocumentType | null
   ) {}
 }

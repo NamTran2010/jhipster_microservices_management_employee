@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { DocumentTypeMapper.class })
 public interface DocumentMapper extends EntityMapper<DocumentDTO, Document> {
-    @Mapping(target = "documentType", source = "documentType", qualifiedByName = "id")
+    @Mapping(target = "documentType", source = "documentType", qualifiedByName = "documentTypeName")
     DocumentDTO toDto(Document s);
 }

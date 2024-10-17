@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as dayjs from 'dayjs';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { IEmployee, Employee } from '../employee.model';
 
 import { EmployeeService } from './employee.service';
@@ -35,7 +35,7 @@ describe('Employee Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          hireDate: currentDate.format(DATE_TIME_FORMAT),
+          hireDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -51,7 +51,7 @@ describe('Employee Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          hireDate: currentDate.format(DATE_TIME_FORMAT),
+          hireDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -75,7 +75,7 @@ describe('Employee Service', () => {
         {
           id: 1,
           name: 'BBBBBB',
-          hireDate: currentDate.format(DATE_TIME_FORMAT),
+          hireDate: currentDate.format(DATE_FORMAT),
           salary: 1,
         },
         elemDefault
@@ -98,7 +98,7 @@ describe('Employee Service', () => {
     it('should partial update a Employee', () => {
       const patchObject = Object.assign(
         {
-          hireDate: currentDate.format(DATE_TIME_FORMAT),
+          hireDate: currentDate.format(DATE_FORMAT),
           salary: 1,
         },
         new Employee()
@@ -125,7 +125,7 @@ describe('Employee Service', () => {
         {
           id: 1,
           name: 'BBBBBB',
-          hireDate: currentDate.format(DATE_TIME_FORMAT),
+          hireDate: currentDate.format(DATE_FORMAT),
           salary: 1,
         },
         elemDefault

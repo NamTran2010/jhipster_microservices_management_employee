@@ -15,9 +15,9 @@
         "title": "Document"
       },
       "id": "ID",
+      "employeeId": "Employee Id",
       "documentName": "Document Name",
       "description": "Description",
-      "employeeId": "Employee Id",
       "documentType": "Document Type"
     }
   },

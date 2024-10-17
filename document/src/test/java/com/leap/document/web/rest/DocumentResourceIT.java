@@ -31,14 +31,14 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class DocumentResourceIT {
 
+    private static final Long DEFAULT_EMPLOYEE_ID = 1L;
+    private static final Long UPDATED_EMPLOYEE_ID = 2L;
+
     private static final String DEFAULT_DOCUMENT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_DOCUMENT_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
-
-    private static final Long DEFAULT_EMPLOYEE_ID = 1L;
-    private static final Long UPDATED_EMPLOYEE_ID = 2L;
 
     private static final String ENTITY_API_URL = "/api/documents";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -68,9 +68,9 @@ class DocumentResourceIT {
      */
     public static Document createEntity(EntityManager em) {
         Document document = new Document()
+            .employeeId(DEFAULT_EMPLOYEE_ID)
             .documentName(DEFAULT_DOCUMENT_NAME)
-            .description(DEFAULT_DESCRIPTION)
-            .employeeId(DEFAULT_EMPLOYEE_ID);
+            .description(DEFAULT_DESCRIPTION);
         return document;
     }
 
@@ -82,9 +82,9 @@ class DocumentResourceIT {
      */
     public static Document createUpdatedEntity(EntityManager em) {
         Document document = new Document()
+            .employeeId(UPDATED_EMPLOYEE_ID)
             .documentName(UPDATED_DOCUMENT_NAME)
-            .description(UPDATED_DESCRIPTION)
-            .employeeId(UPDATED_EMPLOYEE_ID);
+            .description(UPDATED_DESCRIPTION);
         return document;
     }
 
@@ -107,9 +107,9 @@ class DocumentResourceIT {
         List<Document> documentList = documentRepository.findAll();
         assertThat(documentList).hasSize(databaseSizeBeforeCreate + 1);
         Document testDocument = documentList.get(documentList.size() - 1);
+        assertThat(testDocument.getEmployeeId()).isEqualTo(DEFAULT_EMPLOYEE_ID);
         assertThat(testDocument.getDocumentName()).isEqualTo(DEFAULT_DOCUMENT_NAME);
         assertThat(testDocument.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testDocument.getEmployeeId()).isEqualTo(DEFAULT_EMPLOYEE_ID);
     }
 
     @Test
@@ -133,10 +133,10 @@ class DocumentResourceIT {
 
     @Test
     @Transactional
-    void checkDocumentNameIsRequired() throws Exception {
+    void checkEmployeeIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = documentRepository.findAll().size();
         // set the field null
-        document.setDocumentName(null);
+        document.setEmployeeId(null);
 
         // Create the Document, which fails.
         DocumentDTO documentDTO = documentMapper.toDto(document);
@@ -151,10 +151,10 @@ class DocumentResourceIT {
 
     @Test
     @Transactional
-    void checkEmployeeIdIsRequired() throws Exception {
+    void checkDocumentNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = documentRepository.findAll().size();
         // set the field null
-        document.setEmployeeId(null);
+        document.setDocumentName(null);
 
         // Create the Document, which fails.
         DocumentDTO documentDTO = documentMapper.toDto(document);
@@ -179,9 +179,9 @@ class DocumentResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(document.getId().intValue())))
+            .andExpect(jsonPath("$.[*].employeeId").value(hasItem(DEFAULT_EMPLOYEE_ID.intValue())))
             .andExpect(jsonPath("$.[*].documentName").value(hasItem(DEFAULT_DOCUMENT_NAME)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].employeeId").value(hasItem(DEFAULT_EMPLOYEE_ID.intValue())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
     }
 
     @Test
@@ -196,9 +196,9 @@ class DocumentResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(document.getId().intValue()))
+            .andExpect(jsonPath("$.employeeId").value(DEFAULT_EMPLOYEE_ID.intValue()))
             .andExpect(jsonPath("$.documentName").value(DEFAULT_DOCUMENT_NAME))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
-            .andExpect(jsonPath("$.employeeId").value(DEFAULT_EMPLOYEE_ID.intValue()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION));
     }
 
     @Test
@@ -220,7 +220,7 @@ class DocumentResourceIT {
         Document updatedDocument = documentRepository.findById(document.getId()).get();
         // Disconnect from session so that the updates on updatedDocument are not directly saved in db
         em.detach(updatedDocument);
-        updatedDocument.documentName(UPDATED_DOCUMENT_NAME).description(UPDATED_DESCRIPTION).employeeId(UPDATED_EMPLOYEE_ID);
+        updatedDocument.employeeId(UPDATED_EMPLOYEE_ID).documentName(UPDATED_DOCUMENT_NAME).description(UPDATED_DESCRIPTION);
         DocumentDTO documentDTO = documentMapper.toDto(updatedDocument);
 
         restDocumentMockMvc
@@ -235,9 +235,9 @@ class DocumentResourceIT {
         List<Document> documentList = documentRepository.findAll();
         assertThat(documentList).hasSize(databaseSizeBeforeUpdate);
         Document testDocument = documentList.get(documentList.size() - 1);
+        assertThat(testDocument.getEmployeeId()).isEqualTo(UPDATED_EMPLOYEE_ID);
         assertThat(testDocument.getDocumentName()).isEqualTo(UPDATED_DOCUMENT_NAME);
         assertThat(testDocument.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testDocument.getEmployeeId()).isEqualTo(UPDATED_EMPLOYEE_ID);
     }
 
     @Test
@@ -317,7 +317,7 @@ class DocumentResourceIT {
         Document partialUpdatedDocument = new Document();
         partialUpdatedDocument.setId(document.getId());
 
-        partialUpdatedDocument.documentName(UPDATED_DOCUMENT_NAME).description(UPDATED_DESCRIPTION);
+        partialUpdatedDocument.employeeId(UPDATED_EMPLOYEE_ID).documentName(UPDATED_DOCUMENT_NAME);
 
         restDocumentMockMvc
             .perform(
@@ -331,9 +331,9 @@ class DocumentResourceIT {
         List<Document> documentList = documentRepository.findAll();
         assertThat(documentList).hasSize(databaseSizeBeforeUpdate);
         Document testDocument = documentList.get(documentList.size() - 1);
+        assertThat(testDocument.getEmployeeId()).isEqualTo(UPDATED_EMPLOYEE_ID);
         assertThat(testDocument.getDocumentName()).isEqualTo(UPDATED_DOCUMENT_NAME);
-        assertThat(testDocument.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testDocument.getEmployeeId()).isEqualTo(DEFAULT_EMPLOYEE_ID);
+        assertThat(testDocument.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -348,7 +348,7 @@ class DocumentResourceIT {
         Document partialUpdatedDocument = new Document();
         partialUpdatedDocument.setId(document.getId());
 
-        partialUpdatedDocument.documentName(UPDATED_DOCUMENT_NAME).description(UPDATED_DESCRIPTION).employeeId(UPDATED_EMPLOYEE_ID);
+        partialUpdatedDocument.employeeId(UPDATED_EMPLOYEE_ID).documentName(UPDATED_DOCUMENT_NAME).description(UPDATED_DESCRIPTION);
 
         restDocumentMockMvc
             .perform(
@@ -362,9 +362,9 @@ class DocumentResourceIT {
         List<Document> documentList = documentRepository.findAll();
         assertThat(documentList).hasSize(databaseSizeBeforeUpdate);
         Document testDocument = documentList.get(documentList.size() - 1);
+        assertThat(testDocument.getEmployeeId()).isEqualTo(UPDATED_EMPLOYEE_ID);
         assertThat(testDocument.getDocumentName()).isEqualTo(UPDATED_DOCUMENT_NAME);
         assertThat(testDocument.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testDocument.getEmployeeId()).isEqualTo(UPDATED_EMPLOYEE_ID);
     }
 
     @Test

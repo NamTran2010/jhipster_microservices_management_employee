@@ -3,7 +3,7 @@ package com.leap.employee.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -30,7 +30,7 @@ public class Employee implements Serializable {
 
     @NotNull
     @Column(name = "hire_date", nullable = false)
-    private ZonedDateTime hireDate;
+    private LocalDate hireDate;
 
     @NotNull
     @Column(name = "salary", precision = 21, scale = 2, nullable = false)
@@ -71,16 +71,16 @@ public class Employee implements Serializable {
         this.name = name;
     }
 
-    public ZonedDateTime getHireDate() {
+    public LocalDate getHireDate() {
         return this.hireDate;
     }
 
-    public Employee hireDate(ZonedDateTime hireDate) {
+    public Employee hireDate(LocalDate hireDate) {
         this.setHireDate(hireDate);
         return this;
     }
 
-    public void setHireDate(ZonedDateTime hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 

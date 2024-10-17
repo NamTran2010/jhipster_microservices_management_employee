@@ -12,12 +12,12 @@ public class DocumentDTO implements Serializable {
     private Long id;
 
     @NotNull
+    private Long employeeId;
+
+    @NotNull
     private String documentName;
 
     private String description;
-
-    @NotNull
-    private Long employeeId;
 
     private DocumentTypeDTO documentType;
 
@@ -27,6 +27,14 @@ public class DocumentDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getDocumentName() {
@@ -43,14 +51,6 @@ public class DocumentDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
     }
 
     public DocumentTypeDTO getDocumentType() {
@@ -87,9 +87,9 @@ public class DocumentDTO implements Serializable {
     public String toString() {
         return "DocumentDTO{" +
             "id=" + getId() +
+            ", employeeId=" + getEmployeeId() +
             ", documentName='" + getDocumentName() + "'" +
             ", description='" + getDescription() + "'" +
-            ", employeeId=" + getEmployeeId() +
             ", documentType=" + getDocumentType() +
             "}";
     }

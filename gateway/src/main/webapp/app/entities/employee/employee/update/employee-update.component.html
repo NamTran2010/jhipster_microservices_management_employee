@@ -25,16 +25,20 @@
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.employeeEmployee.hireDate" for="field_hireDate">Hire Date</label>
-          <div class="d-flex">
+          <div class="input-group">
             <input
               id="field_hireDate"
               data-cy="hireDate"
-              type="datetime-local"
+              type="text"
               class="form-control"
               name="hireDate"
+              ngbDatepicker
+              #hireDateDp="ngbDatepicker"
               formControlName="hireDate"
-              placeholder="YYYY-MM-DD HH:mm"
             />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="hireDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
           </div>
           <div *ngIf="editForm.get('hireDate')!.invalid && (editForm.get('hireDate')!.dirty || editForm.get('hireDate')!.touched)">
             <small
@@ -43,13 +47,6 @@
               jhiTranslate="entity.validation.required"
             >
               This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('hireDate')?.errors?.ZonedDateTimelocal"
-              jhiTranslate="entity.validation.ZonedDateTimelocal"
-            >
-              This field should be a date and time.
             </small>
           </div>
         </div>

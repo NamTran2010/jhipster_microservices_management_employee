@@ -14,6 +14,34 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.employeeId" for="field_employeeId">Employee Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="employeeId"
+            id="field_employeeId"
+            data-cy="employeeId"
+            formControlName="employeeId"
+          />
+          <div *ngIf="editForm.get('employeeId')!.invalid && (editForm.get('employeeId')!.dirty || editForm.get('employeeId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('employeeId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('employeeId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.documentName" for="field_documentName"
             >Document Name</label
           >
@@ -53,34 +81,6 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.employeeId" for="field_employeeId">Employee Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="employeeId"
-            id="field_employeeId"
-            data-cy="employeeId"
-            formControlName="employeeId"
-          />
-          <div *ngIf="editForm.get('employeeId')!.invalid && (editForm.get('employeeId')!.dirty || editForm.get('employeeId')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('employeeId')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('employeeId')?.errors?.number"
-              jhiTranslate="entity.validation.number"
-            >
-              This field should be a number.
-            </small>
-          </div>
-        </div>
-
-        <div class="form-group">
           <label class="form-control-label" jhiTranslate="gatewayApp.documentDocument.documentType" for="field_documentType"
             >Document Type</label
           >
@@ -92,7 +92,7 @@
               "
               *ngFor="let documentTypeOption of documentTypesSharedCollection; trackBy: trackDocumentTypeById"
             >
-              {{ documentTypeOption.documentTypeName}}
+              {{ documentTypeOption.documentTypeName }}
             </option>
           </select>
         </div>

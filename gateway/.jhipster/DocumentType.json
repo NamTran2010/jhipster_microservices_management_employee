@@ -21,5 +21,5 @@
   "microserviceName": "document",
   "clientRootFolder": "document",
   "databaseType": "sql",
-  "changelogDate": "20241015093536"
+  "changelogDate": "20241017085153"
 }

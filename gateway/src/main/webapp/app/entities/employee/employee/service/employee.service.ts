@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import * as dayjs from 'dayjs';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IEmployee, getEmployeeIdentifier } from '../employee.model';
@@ -75,7 +76,7 @@ export class EmployeeService {
 
   protected convertDateFromClient(employee: IEmployee): IEmployee {
     return Object.assign({}, employee, {
-      hireDate: employee.hireDate?.isValid() ? employee.hireDate.toJSON() : undefined,
+      hireDate: employee.hireDate?.isValid() ? employee.hireDate.format(DATE_FORMAT) : undefined,
     });
   }
 

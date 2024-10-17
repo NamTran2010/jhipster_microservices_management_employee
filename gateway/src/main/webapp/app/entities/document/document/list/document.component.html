@@ -33,16 +33,16 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="employeeId">
+            <span jhiTranslate="gatewayApp.documentDocument.employeeId">Employee Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="documentName">
             <span jhiTranslate="gatewayApp.documentDocument.documentName">Document Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="description">
             <span jhiTranslate="gatewayApp.documentDocument.description">Description</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="employeeId">
-            <span jhiTranslate="gatewayApp.documentDocument.employeeId">Employee Id</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="documentType.id">
+          <th scope="col" jhiSortBy="documentType.documentTypeName">
             <span jhiTranslate="gatewayApp.documentDocument.documentType">Document Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -53,12 +53,12 @@
           <td>
             <a [routerLink]="['/document', document.id, 'view']">{{ document.id }}</a>
           </td>
+          <td>{{ document.employeeId }}</td>
           <td>{{ document.documentName }}</td>
           <td>{{ document.description }}</td>
-          <td>{{ document.employeeId }}</td>
           <td>
             <div *ngIf="document.documentType">
-              <a [routerLink]="['/document-type', document.documentType?.id, 'view']">{{ document.documentType?.id }}</a>
+              <a [routerLink]="['/document-type', document.documentType?.id, 'view']">{{ document.documentType?.documentTypeName }}</a>
             </div>
           </td>
           <td class="text-right">

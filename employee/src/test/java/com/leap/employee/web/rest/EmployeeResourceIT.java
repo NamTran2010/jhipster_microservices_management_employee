@@ -1,6 +1,5 @@
 package com.leap.employee.web.rest;
 
-import static com.leap.employee.web.rest.TestUtil.sameInstant;
 import static com.leap.employee.web.rest.TestUtil.sameNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -13,10 +12,8 @@ import com.leap.employee.repository.EmployeeRepository;
 import com.leap.employee.service.dto.EmployeeDTO;
 import com.leap.employee.service.mapper.EmployeeMapper;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -41,8 +38,8 @@ class EmployeeResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_HIRE_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_HIRE_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final LocalDate DEFAULT_HIRE_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_HIRE_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final BigDecimal DEFAULT_SALARY = new BigDecimal(1);
     private static final BigDecimal UPDATED_SALARY = new BigDecimal(2);
@@ -199,7 +196,7 @@ class EmployeeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].hireDate").value(hasItem(sameInstant(DEFAULT_HIRE_DATE))))
+            .andExpect(jsonPath("$.[*].hireDate").value(hasItem(DEFAULT_HIRE_DATE.toString())))
             .andExpect(jsonPath("$.[*].salary").value(hasItem(sameNumber(DEFAULT_SALARY))));
     }
 
@@ -216,7 +213,7 @@ class EmployeeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(employee.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.hireDate").value(sameInstant(DEFAULT_HIRE_DATE)))
+            .andExpect(jsonPath("$.hireDate").value(DEFAULT_HIRE_DATE.toString()))
             .andExpect(jsonPath("$.salary").value(sameNumber(DEFAULT_SALARY)));
     }
 

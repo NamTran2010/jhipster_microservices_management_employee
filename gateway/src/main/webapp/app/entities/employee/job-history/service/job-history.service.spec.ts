@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as dayjs from 'dayjs';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { IJobHistory, JobHistory } from '../job-history.model';
 
 import { JobHistoryService } from './job-history.service';
@@ -26,7 +26,6 @@ describe('JobHistory Service', () => {
     elemDefault = {
       id: 0,
       startDate: currentDate,
-      endDate: currentDate,
       salary: 0,
     };
   });
@@ -35,8 +34,7 @@ describe('JobHistory Service', () => {
     it('should find an element', () => {
       const returnedFromService = Object.assign(
         {
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -52,8 +50,7 @@ describe('JobHistory Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 0,
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
         },
         elemDefault
       );
@@ -61,7 +58,6 @@ describe('JobHistory Service', () => {
       const expected = Object.assign(
         {
           startDate: currentDate,
-          endDate: currentDate,
         },
         returnedFromService
       );
@@ -77,8 +73,7 @@ describe('JobHistory Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
           salary: 1,
         },
         elemDefault
@@ -87,7 +82,6 @@ describe('JobHistory Service', () => {
       const expected = Object.assign(
         {
           startDate: currentDate,
-          endDate: currentDate,
         },
         returnedFromService
       );
@@ -102,7 +96,7 @@ describe('JobHistory Service', () => {
     it('should partial update a JobHistory', () => {
       const patchObject = Object.assign(
         {
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          salary: 1,
         },
         new JobHistory()
       );
@@ -112,7 +106,6 @@ describe('JobHistory Service', () => {
       const expected = Object.assign(
         {
           startDate: currentDate,
-          endDate: currentDate,
         },
         returnedFromService
       );
@@ -128,8 +121,7 @@ describe('JobHistory Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
-          startDate: currentDate.format(DATE_TIME_FORMAT),
-          endDate: currentDate.format(DATE_TIME_FORMAT),
+          startDate: currentDate.format(DATE_FORMAT),
           salary: 1,
         },
         elemDefault
@@ -138,7 +130,6 @@ describe('JobHistory Service', () => {
       const expected = Object.assign(
         {
           startDate: currentDate,
-          endDate: currentDate,
         },
         returnedFromService
       );
@@ -188,7 +179,7 @@ describe('JobHistory Service', () => {
       });
 
       it('should add only unique JobHistory to an array', () => {
-        const jobHistoryArray: IJobHistory[] = [{ id: 123 }, { id: 456 }, { id: 95992 }];
+        const jobHistoryArray: IJobHistory[] = [{ id: 123 }, { id: 456 }, { id: 29689 }];
         const jobHistoryCollection: IJobHistory[] = [{ id: 123 }];
         expectedResult = service.addJobHistoryToCollectionIfMissing(jobHistoryCollection, ...jobHistoryArray);
         expect(expectedResult).toHaveLength(3);

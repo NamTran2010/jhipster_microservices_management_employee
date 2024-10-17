@@ -36,9 +36,6 @@
           <th scope="col" jhiSortBy="startDate">
             <span jhiTranslate="gatewayApp.employeeJobHistory.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="endDate">
-            <span jhiTranslate="gatewayApp.employeeJobHistory.endDate">End Date</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="salary">
             <span jhiTranslate="gatewayApp.employeeJobHistory.salary">Salary</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -56,8 +53,7 @@
           <td>
             <a [routerLink]="['/job-history', jobHistory.id, 'view']">{{ jobHistory.id }}</a>
           </td>
-          <td>{{ jobHistory.startDate | formatMediumDatetime }}</td>
-          <td>{{ jobHistory.endDate | formatMediumDatetime }}</td>
+          <td>{{ jobHistory.startDate | formatMediumDate }}</td>
           <td>{{ jobHistory.salary }}</td>
           <td>
             <div *ngIf="jobHistory.job">

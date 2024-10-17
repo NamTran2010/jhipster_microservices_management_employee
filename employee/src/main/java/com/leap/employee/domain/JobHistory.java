@@ -3,7 +3,7 @@ package com.leap.employee.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -26,10 +26,7 @@ public class JobHistory implements Serializable {
 
     @NotNull
     @Column(name = "start_date", nullable = false)
-    private ZonedDateTime startDate;
-
-    @Column(name = "end_date")
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
 
     @NotNull
     @Column(name = "salary", precision = 21, scale = 2, nullable = false)
@@ -58,30 +55,17 @@ public class JobHistory implements Serializable {
         this.id = id;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return this.startDate;
     }
 
-    public JobHistory startDate(ZonedDateTime startDate) {
+    public JobHistory startDate(LocalDate startDate) {
         this.setStartDate(startDate);
         return this;
     }
 
-    public void setStartDate(ZonedDateTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public ZonedDateTime getEndDate() {
-        return this.endDate;
-    }
-
-    public JobHistory endDate(ZonedDateTime endDate) {
-        this.setEndDate(endDate);
-        return this;
-    }
-
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
     }
 
     public BigDecimal getSalary() {
@@ -148,7 +132,6 @@ public class JobHistory implements Serializable {
         return "JobHistory{" +
             "id=" + getId() +
             ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
             ", salary=" + getSalary() +
             "}";
     }

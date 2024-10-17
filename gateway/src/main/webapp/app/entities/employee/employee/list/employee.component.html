@@ -57,7 +57,7 @@
             <a [routerLink]="['/employee', employee.id, 'view']">{{ employee.id }}</a>
           </td>
           <td>{{ employee.name }}</td>
-          <td>{{ employee.hireDate | formatMediumDatetime }}</td>
+          <td>{{ employee.hireDate | formatMediumDate }}</td>
           <td>{{ employee.salary }}</td>
           <td>
             <div *ngIf="employee.job">

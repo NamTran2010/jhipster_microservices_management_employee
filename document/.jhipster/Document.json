@@ -2,6 +2,11 @@
   "name": "Document",
   "fields": [
     {
+      "fieldName": "employeeId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "documentName",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
@@ -9,11 +14,6 @@
     {
       "fieldName": "description",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "employeeId",
-      "fieldType": "Long",
-      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [
@@ -21,7 +21,8 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "documentType",
       "otherEntityRelationshipName": "document",
-      "relationshipName": "documentType"
+      "relationshipName": "documentType",
+      "otherEntityField": "documentTypeName"
     }
   ],
   "entityTableName": "document",
@@ -36,5 +37,5 @@
   "microserviceName": "document",
   "clientRootFolder": "document",
   "databaseType": "sql",
-  "changelogDate": "20241015093535"
+  "changelogDate": "20241017085152"
 }

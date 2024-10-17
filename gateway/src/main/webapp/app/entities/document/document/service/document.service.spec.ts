@@ -21,9 +21,9 @@ describe('Document Service', () => {
 
     elemDefault = {
       id: 0,
+      employeeId: 0,
       documentName: 'AAAAAAA',
       description: 'AAAAAAA',
-      employeeId: 0,
     };
   });
 
@@ -59,9 +59,9 @@ describe('Document Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          employeeId: 1,
           documentName: 'BBBBBB',
           description: 'BBBBBB',
-          employeeId: 1,
         },
         elemDefault
       );
@@ -78,9 +78,9 @@ describe('Document Service', () => {
     it('should partial update a Document', () => {
       const patchObject = Object.assign(
         {
+          employeeId: 1,
           documentName: 'BBBBBB',
           description: 'BBBBBB',
-          employeeId: 1,
         },
         new Document()
       );
@@ -100,9 +100,9 @@ describe('Document Service', () => {
       const returnedFromService = Object.assign(
         {
           id: 1,
+          employeeId: 1,
           documentName: 'BBBBBB',
           description: 'BBBBBB',
-          employeeId: 1,
         },
         elemDefault
       );

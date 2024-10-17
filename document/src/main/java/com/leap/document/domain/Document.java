@@ -22,15 +22,15 @@ public class Document implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "employee_id", nullable = false)
+    private Long employeeId;
+
+    @NotNull
     @Column(name = "document_name", nullable = false)
     private String documentName;
 
     @Column(name = "description")
     private String description;
-
-    @NotNull
-    @Column(name = "employee_id", nullable = false)
-    private Long employeeId;
 
     @ManyToOne
     private DocumentType documentType;
@@ -48,6 +48,19 @@ public class Document implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getEmployeeId() {
+        return this.employeeId;
+    }
+
+    public Document employeeId(Long employeeId) {
+        this.setEmployeeId(employeeId);
+        return this;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getDocumentName() {
@@ -74,19 +87,6 @@ public class Document implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getEmployeeId() {
-        return this.employeeId;
-    }
-
-    public Document employeeId(Long employeeId) {
-        this.setEmployeeId(employeeId);
-        return this;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
     }
 
     public DocumentType getDocumentType() {
@@ -126,9 +126,9 @@ public class Document implements Serializable {
     public String toString() {
         return "Document{" +
             "id=" + getId() +
+            ", employeeId=" + getEmployeeId() +
             ", documentName='" + getDocumentName() + "'" +
             ", description='" + getDescription() + "'" +
-            ", employeeId=" + getEmployeeId() +
             "}";
     }
 }

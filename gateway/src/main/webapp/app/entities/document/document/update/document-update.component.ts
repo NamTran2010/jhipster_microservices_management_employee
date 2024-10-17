@@ -21,9 +21,9 @@ export class DocumentUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    employeeId: [null, [Validators.required]],
     documentName: [null, [Validators.required]],
     description: [],
-    employeeId: [null, [Validators.required]],
     documentType: [],
   });
 
@@ -82,9 +82,9 @@ export class DocumentUpdateComponent implements OnInit {
   protected updateForm(document: IDocument): void {
     this.editForm.patchValue({
       id: document.id,
+      employeeId: document.employeeId,
       documentName: document.documentName,
       description: document.description,
-      employeeId: document.employeeId,
       documentType: document.documentType,
     });
 
@@ -110,9 +110,9 @@ export class DocumentUpdateComponent implements OnInit {
     return {
       ...new Document(),
       id: this.editForm.get(['id'])!.value,
+      employeeId: this.editForm.get(['employeeId'])!.value,
       documentName: this.editForm.get(['documentName'])!.value,
       description: this.editForm.get(['description'])!.value,
-      employeeId: this.editForm.get(['employeeId'])!.value,
       documentType: this.editForm.get(['documentType'])!.value,
     };
   }
