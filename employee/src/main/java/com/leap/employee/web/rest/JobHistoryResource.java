@@ -1,5 +1,6 @@
 package com.leap.employee.web.rest;
 
+import com.leap.employee.domain.JobHistory;
 import com.leap.employee.repository.JobHistoryRepository;
 import com.leap.employee.service.JobHistoryService;
 import com.leap.employee.service.dto.JobHistoryDTO;
@@ -178,6 +179,26 @@ public class JobHistoryResource {
         Optional<JobHistoryDTO> jobHistoryDTO = jobHistoryService.findOne(id);
         return ResponseUtil.wrapOrNotFound(jobHistoryDTO);
     }
+
+    // Name CODE
+    // Get job histories by employee ID
+
+    /**
+     * GET /employee/{employeeId} : lấy tất cả job histories theo employee id.
+     *
+     * @param employeeId ID của employee.
+     * @return ResponseEntity với status 200 (OK) và danh sách job histories trong
+     *         body.
+     */
+    @GetMapping("/employee/{employeeId}")
+    public ResponseEntity<List<JobHistoryDTO>> getJobHistoriesByEmployeeId(@PathVariable Long employeeId) {
+        List<JobHistoryDTO> jobHistories = jobHistoryService.findJobHistoriesByEmployeeId(employeeId);
+        if (jobHistories.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Trả về trạng thái 204 nếu không có dữ liệu
+        }
+        return ResponseEntity.ok(jobHistories); // Trả về danh sách job histories
+    }
+    // Name CODE
 
     /**
      * {@code DELETE  /job-histories/:id} : delete the "id" jobHistory.

@@ -4,7 +4,11 @@ import com.leap.employee.domain.JobHistory;
 import com.leap.employee.repository.JobHistoryRepository;
 import com.leap.employee.service.dto.JobHistoryDTO;
 import com.leap.employee.service.mapper.JobHistoryMapper;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -87,6 +91,24 @@ public class JobHistoryService {
         return jobHistoryRepository.findById(id).map(jobHistoryMapper::toDto);
     }
 
+    // NAM CODE
+
+    /**
+     * Lấy danh sách job histories cho một employee cụ thể.
+     *
+     * @param employeeId ID của employee.
+     * @return danh sách các JobHistoryDTO.
+     */
+    @Transactional(readOnly = true)
+    public List<JobHistoryDTO> findJobHistoriesByEmployeeId(Long employeeId) {
+        log.debug("Request to get JobHistories for Employee : {}", employeeId);
+        return jobHistoryRepository.findByEmployeeId(employeeId) // Lấy danh sách JobHistory
+                .stream()
+                .map(jobHistoryMapper::toDto) // Chuyển đổi từng JobHistory thành JobHistoryDTO
+                .collect(Collectors.toList());
+    }
+
+    // NAM CODE
     /**
      * Delete the jobHistory by id.
      *
