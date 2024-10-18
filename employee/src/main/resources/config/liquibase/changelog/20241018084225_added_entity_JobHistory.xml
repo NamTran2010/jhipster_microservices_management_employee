@@ -9,7 +9,7 @@
     <!--
         Added the entity JobHistory.
     -->
-    <changeSet id="20241017103502-1" author="jhipster">
+    <changeSet id="20241018084225-1" author="jhipster">
         <createTable tableName="job_history">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -43,7 +43,7 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20241017103502-1-data" author="jhipster" context="faker">
+    <changeSet id="20241018084225-1-data" author="jhipster" context="faker">
         <loadData
                   file="config/liquibase/fake-data/job_history.csv"
                   separator=";"
