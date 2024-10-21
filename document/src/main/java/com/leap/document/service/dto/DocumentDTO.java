@@ -86,11 +86,11 @@ public class DocumentDTO implements Serializable {
     @Override
     public String toString() {
         return "DocumentDTO{" +
-            "id=" + getId() +
-            ", employeeId=" + getEmployeeId() +
-            ", documentName='" + getDocumentName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", documentType=" + getDocumentType() +
-            "}";
+                "id=" + getId() +
+                ", employeeId=" + getEmployeeId() +
+                ", documentName='" + getDocumentName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", documentType=" + getDocumentType() +
+                "}";
     }
 }

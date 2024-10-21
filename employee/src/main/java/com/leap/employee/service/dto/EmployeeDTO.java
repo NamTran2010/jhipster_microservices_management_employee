@@ -99,12 +99,12 @@ public class EmployeeDTO implements Serializable {
     @Override
     public String toString() {
         return "EmployeeDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", hireDate='" + getHireDate() + "'" +
-            ", salary=" + getSalary() +
-            ", job=" + getJob() +
-            ", department=" + getDepartment() +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                ", hireDate='" + getHireDate() + "'" +
+                ", salary=" + getSalary() +
+                ", job=" + getJob() +
+                ", department=" + getDepartment() +
+                "}";
     }
 }

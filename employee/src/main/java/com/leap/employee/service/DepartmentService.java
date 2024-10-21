@@ -53,14 +53,14 @@ public class DepartmentService {
         log.debug("Request to partially update Department : {}", departmentDTO);
 
         return departmentRepository
-            .findById(departmentDTO.getId())
-            .map(existingDepartment -> {
-                departmentMapper.partialUpdate(existingDepartment, departmentDTO);
+                .findById(departmentDTO.getId())
+                .map(existingDepartment -> {
+                    departmentMapper.partialUpdate(existingDepartment, departmentDTO);
 
-                return existingDepartment;
-            })
-            .map(departmentRepository::save)
-            .map(departmentMapper::toDto);
+                    return existingDepartment;
+                })
+                .map(departmentRepository::save)
+                .map(departmentMapper::toDto);
     }
 
     /**

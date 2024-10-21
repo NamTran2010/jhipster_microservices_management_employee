@@ -75,10 +75,10 @@ public class JobDTO implements Serializable {
     @Override
     public String toString() {
         return "JobDTO{" +
-            "id=" + getId() +
-            ", jobName='" + getJobName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", department=" + getDepartment() +
-            "}";
+                "id=" + getId() +
+                ", jobName='" + getJobName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", department=" + getDepartment() +
+                "}";
     }
 }

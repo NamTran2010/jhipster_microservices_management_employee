@@ -42,7 +42,8 @@ public class ModifyServersOpenApiFilter implements GlobalFilter, Ordered {
         if (path.startsWith("/services") && path.contains("/v3/api-docs")) {
             ServerHttpResponse originalResponse = exchange.getResponse();
             DataBufferFactory bufferFactory = originalResponse.bufferFactory();
-            ServerHttpResponseDecorator decoratedResponse = createModifyServersOpenApiInterceptor(path, originalResponse, bufferFactory);
+            ServerHttpResponseDecorator decoratedResponse = createModifyServersOpenApiInterceptor(path,
+                    originalResponse, bufferFactory);
 
             // replace response with decorator
             return chain.filter(exchange.mutate().response(decoratedResponse).build());
@@ -57,10 +58,9 @@ public class ModifyServersOpenApiFilter implements GlobalFilter, Ordered {
     }
 
     public ModifyServersOpenApiInterceptor createModifyServersOpenApiInterceptor(
-        String path,
-        ServerHttpResponse originalResponse,
-        DataBufferFactory bufferFactory
-    ) {
+            String path,
+            ServerHttpResponse originalResponse,
+            DataBufferFactory bufferFactory) {
         return new ModifyServersOpenApiInterceptor(path, originalResponse, bufferFactory);
     }
 
@@ -71,7 +71,8 @@ public class ModifyServersOpenApiFilter implements GlobalFilter, Ordered {
         private final DataBufferFactory bufferFactory;
         private String rewritedBody = "";
 
-        private ModifyServersOpenApiInterceptor(String path, ServerHttpResponse originalResponse, DataBufferFactory bufferFactory) {
+        private ModifyServersOpenApiInterceptor(String path, ServerHttpResponse originalResponse,
+                DataBufferFactory bufferFactory) {
             super(originalResponse);
             this.path = path;
             this.originalResponse = originalResponse;
@@ -144,11 +145,10 @@ public class ModifyServersOpenApiFilter implements GlobalFilter, Ordered {
         }
 
         private boolean isZippedResponse() {
-            return (
-                !originalResponse.getHeaders().isEmpty() &&
-                originalResponse.getHeaders().get(HttpHeaders.CONTENT_ENCODING) != null &&
-                Objects.requireNonNull(originalResponse.getHeaders().get(HttpHeaders.CONTENT_ENCODING)).contains("gzip")
-            );
+            return (!originalResponse.getHeaders().isEmpty() &&
+                    originalResponse.getHeaders().get(HttpHeaders.CONTENT_ENCODING) != null &&
+                    Objects.requireNonNull(originalResponse.getHeaders().get(HttpHeaders.CONTENT_ENCODING))
+                            .contains("gzip"));
         }
 
         private byte[] unzipContent(byte[] content) {
@@ -158,7 +158,8 @@ public class ModifyServersOpenApiFilter implements GlobalFilter, Ordered {
                 gzipInputStream.close();
                 return unzippedContent;
             } catch (IOException e) {
-                log.error("Error when unzip content during modify servers from api-doc of {}: {}", path, e.getMessage());
+                log.error("Error when unzip content during modify servers from api-doc of {}: {}", path,
+                        e.getMessage());
             }
             return content;
         }

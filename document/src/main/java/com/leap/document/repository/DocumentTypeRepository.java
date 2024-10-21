@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface DocumentTypeRepository extends JpaRepository<DocumentType, Long> {}
+public interface DocumentTypeRepository extends JpaRepository<DocumentType, Long> {
+}

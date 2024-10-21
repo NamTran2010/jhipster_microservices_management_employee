@@ -10,7 +10,8 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 /**
- * Filters incoming requests and installs a Spring Security principal if a header corresponding to a valid user is
+ * Filters incoming requests and installs a Spring Security principal if a
+ * header corresponding to a valid user is
  * found.
  */
 public class JWTFilter implements WebFilter {
@@ -28,7 +29,8 @@ public class JWTFilter implements WebFilter {
         String jwt = resolveToken(exchange.getRequest());
         if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) {
             Authentication authentication = this.tokenProvider.getAuthentication(jwt);
-            return chain.filter(exchange).subscriberContext(ReactiveSecurityContextHolder.withAuthentication(authentication));
+            return chain.filter(exchange)
+                    .subscriberContext(ReactiveSecurityContextHolder.withAuthentication(authentication));
         }
         return chain.filter(exchange);
     }

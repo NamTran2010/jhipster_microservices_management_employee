@@ -98,12 +98,12 @@ public class JobHistoryDTO implements Serializable {
     @Override
     public String toString() {
         return "JobHistoryDTO{" +
-            "id=" + getId() +
-            ", startDate='" + getStartDate() + "'" +
-            ", salary=" + getSalary() +
-            ", job=" + getJob() +
-            ", employee=" + getEmployee() +
-            ", department=" + getDepartment() +
-            "}";
+                "id=" + getId() +
+                ", startDate='" + getStartDate() + "'" +
+                ", salary=" + getSalary() +
+                ", job=" + getJob() +
+                ", employee=" + getEmployee() +
+                ", department=" + getDepartment() +
+                "}";
     }
 }

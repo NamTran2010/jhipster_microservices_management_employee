@@ -32,7 +32,8 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
     @Qualifier("swaggerResources")
     private final SwaggerResourcesProvider swaggerResourcesProvider;
 
-    public GatewaySwaggerResourcesProvider(RouteLocator routeLocator, SwaggerResourcesProvider swaggerResourcesProvider) {
+    public GatewaySwaggerResourcesProvider(RouteLocator routeLocator,
+            SwaggerResourcesProvider swaggerResourcesProvider) {
         this.routeLocator = routeLocator;
         this.swaggerResourcesProvider = swaggerResourcesProvider;
     }
@@ -45,18 +46,19 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
         swaggerResources.add(swaggerResource(gatewayName.concat(" (management)"), "/v3/api-docs?group=management"));
 
         List<String> microservices = routeLocator
-            .getRoutes()
-            .map(this::getMicroserviceName)
-            .collectList()
-            .defaultIfEmpty(Collections.emptyList())
-            .subscribeOn(Schedulers.boundedElastic())
-            .toFuture()
-            .orTimeout(10, TimeUnit.SECONDS)
-            .join();
+                .getRoutes()
+                .map(this::getMicroserviceName)
+                .collectList()
+                .defaultIfEmpty(Collections.emptyList())
+                .subscribeOn(Schedulers.boundedElastic())
+                .toFuture()
+                .orTimeout(10, TimeUnit.SECONDS)
+                .join();
         microservices
-            .stream()
-            .filter(this::isNotGateway)
-            .forEach(microservice -> swaggerResources.add(swaggerResource(microservice, getMicroserviceApiDocs(microservice))));
+                .stream()
+                .filter(this::isNotGateway)
+                .forEach(microservice -> swaggerResources
+                        .add(swaggerResource(microservice, getMicroserviceApiDocs(microservice))));
         return swaggerResources;
     }
 

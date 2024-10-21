@@ -13,7 +13,8 @@ import reactor.core.publisher.Mono;
  */
 public final class SecurityUtils {
 
-    private SecurityUtils() {}
+    private SecurityUtils() {
+    }
 
     /**
      * Get the login of the current user.
@@ -22,9 +23,9 @@ public final class SecurityUtils {
      */
     public static Mono<String> getCurrentUserLogin() {
         return ReactiveSecurityContextHolder
-            .getContext()
-            .map(SecurityContext::getAuthentication)
-            .flatMap(authentication -> Mono.justOrEmpty(extractPrincipal(authentication)));
+                .getContext()
+                .map(SecurityContext::getAuthentication)
+                .flatMap(authentication -> Mono.justOrEmpty(extractPrincipal(authentication)));
     }
 
     private static String extractPrincipal(Authentication authentication) {
@@ -46,10 +47,10 @@ public final class SecurityUtils {
      */
     public static Mono<String> getCurrentUserJWT() {
         return ReactiveSecurityContextHolder
-            .getContext()
-            .map(SecurityContext::getAuthentication)
-            .filter(authentication -> authentication.getCredentials() instanceof String)
-            .map(authentication -> (String) authentication.getCredentials());
+                .getContext()
+                .map(SecurityContext::getAuthentication)
+                .filter(authentication -> authentication.getCredentials() instanceof String)
+                .map(authentication -> (String) authentication.getCredentials());
     }
 
     /**
@@ -59,10 +60,11 @@ public final class SecurityUtils {
      */
     public static Mono<Boolean> isAuthenticated() {
         return ReactiveSecurityContextHolder
-            .getContext()
-            .map(SecurityContext::getAuthentication)
-            .map(Authentication::getAuthorities)
-            .map(authorities -> authorities.stream().map(GrantedAuthority::getAuthority).noneMatch(AuthoritiesConstants.ANONYMOUS::equals));
+                .getContext()
+                .map(SecurityContext::getAuthentication)
+                .map(Authentication::getAuthorities)
+                .map(authorities -> authorities.stream().map(GrantedAuthority::getAuthority)
+                        .noneMatch(AuthoritiesConstants.ANONYMOUS::equals));
     }
 
     /**
@@ -73,22 +75,21 @@ public final class SecurityUtils {
      */
     public static Mono<Boolean> hasCurrentUserAnyOfAuthorities(String... authorities) {
         return ReactiveSecurityContextHolder
-            .getContext()
-            .map(SecurityContext::getAuthentication)
-            .map(Authentication::getAuthorities)
-            .map(authorityList ->
-                authorityList
-                    .stream()
-                    .map(GrantedAuthority::getAuthority)
-                    .anyMatch(authority -> Arrays.asList(authorities).contains(authority))
-            );
+                .getContext()
+                .map(SecurityContext::getAuthentication)
+                .map(Authentication::getAuthorities)
+                .map(authorityList -> authorityList
+                        .stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .anyMatch(authority -> Arrays.asList(authorities).contains(authority)));
     }
 
     /**
      * Checks if the current user has none of the authorities.
      *
      * @param authorities the authorities to check.
-     * @return true if the current user has none of the authorities, false otherwise.
+     * @return true if the current user has none of the authorities, false
+     *         otherwise.
      */
     public static Mono<Boolean> hasCurrentUserNoneOfAuthorities(String... authorities) {
         return hasCurrentUserAnyOfAuthorities(authorities).map(result -> !result);

@@ -65,9 +65,9 @@ public class DepartmentDTO implements Serializable {
     @Override
     public String toString() {
         return "DepartmentDTO{" +
-            "id=" + getId() +
-            ", departmentName='" + getDepartmentName() + "'" +
-            ", description='" + getDescription() + "'" +
-            "}";
+                "id=" + getId() +
+                ", departmentName='" + getDepartmentName() + "'" +
+                ", description='" + getDescription() + "'" +
+                "}";
     }
 }

@@ -53,14 +53,14 @@ public class DocumentService {
         log.debug("Request to partially update Document : {}", documentDTO);
 
         return documentRepository
-            .findById(documentDTO.getId())
-            .map(existingDocument -> {
-                documentMapper.partialUpdate(existingDocument, documentDTO);
+                .findById(documentDTO.getId())
+                .map(existingDocument -> {
+                    documentMapper.partialUpdate(existingDocument, documentDTO);
 
-                return existingDocument;
-            })
-            .map(documentRepository::save)
-            .map(documentMapper::toDto);
+                    return existingDocument;
+                })
+                .map(documentRepository::save)
+                .map(documentMapper::toDto);
     }
 
     /**

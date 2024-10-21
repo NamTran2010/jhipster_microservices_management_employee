@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 
 /**
- * This service provides helper function dealing with the low level {@link Row} and Spring's {@link R2dbcCustomConversions}, so type conversions can be applied.
+ * This service provides helper function dealing with the low level {@link Row}
+ * and Spring's {@link R2dbcCustomConversions}, so type conversions can be
+ * applied.
  */
 @Service
 public class ColumnConverter {
@@ -23,10 +25,12 @@ public class ColumnConverter {
     }
 
     /**
-     * Converts the value to the target class with the help of the {@link ConversionService}.
-     * @param value to convert.
+     * Converts the value to the target class with the help of the
+     * {@link ConversionService}.
+     * 
+     * @param value  to convert.
      * @param target class.
-     * @param <T> the parameter for the intended type.
+     * @param <T>    the parameter for the intended type.
      * @return the value which can be constructed from the input.
      */
     @SuppressWarnings("unchecked")
@@ -47,11 +51,13 @@ public class ColumnConverter {
     }
 
     /**
-     * Convert a value from the {@link Row} to a type - throws an exception, it it's impossible.
-     * @param row which contains the column values.
-     * @param target class.
+     * Convert a value from the {@link Row} to a type - throws an exception, it it's
+     * impossible.
+     * 
+     * @param row        which contains the column values.
+     * @param target     class.
      * @param columnName the name of the column which to convert.
-     * @param <T> the parameter for the intended type.
+     * @param <T>        the parameter for the intended type.
      * @return the value which can be constructed from the input.
      */
     public <T> T fromRow(Row row, String columnName, Class<T> target) {

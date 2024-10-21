@@ -31,7 +31,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Helper class to create SQL selects based on the entity, paging parameters and criteria.
+ * Helper class to create SQL selects based on the entity, paging parameters and
+ * criteria.
  *
  */
 @Service
@@ -69,26 +70,28 @@ public class EntityManager {
     }
 
     /**
-     * Creates an SQL select statement from the given fragment and pagination parameters.
+     * Creates an SQL select statement from the given fragment and pagination
+     * parameters.
+     * 
      * @param selectFrom a representation of a select statement.
      * @param entityType the entity type which holds the table name.
-     * @param pageable page parameter, or null, if everything needs to be returned
+     * @param pageable   page parameter, or null, if everything needs to be returned
      * @return sql select statement
      */
-    public String createSelect(SelectFromAndJoin selectFrom, Class<?> entityType, Pageable pageable, Criteria criteria) {
+    public String createSelect(SelectFromAndJoin selectFrom, Class<?> entityType, Pageable pageable,
+            Criteria criteria) {
         if (pageable != null) {
             if (criteria != null) {
                 return createSelectImpl(
-                    selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()).where(Conditions.just(criteria.toString())),
-                    entityType,
-                    pageable.getSort()
-                );
+                        selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset())
+                                .where(Conditions.just(criteria.toString())),
+                        entityType,
+                        pageable.getSort());
             } else {
                 return createSelectImpl(
-                    selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()),
-                    entityType,
-                    pageable.getSort()
-                );
+                        selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()),
+                        entityType,
+                        pageable.getSort());
             }
         } else {
             if (criteria != null) {
@@ -100,26 +103,28 @@ public class EntityManager {
     }
 
     /**
-     * Creates an SQL select statement from the given fragment and pagination parameters.
+     * Creates an SQL select statement from the given fragment and pagination
+     * parameters.
+     * 
      * @param selectFrom a representation of a select statement.
      * @param entityType the entity type which holds the table name.
-     * @param pageable page parameter, or null, if everything needs to be returned
+     * @param pageable   page parameter, or null, if everything needs to be returned
      * @return sql select statement
      */
-    public String createSelect(SelectFromAndJoinCondition selectFrom, Class<?> entityType, Pageable pageable, Criteria criteria) {
+    public String createSelect(SelectFromAndJoinCondition selectFrom, Class<?> entityType, Pageable pageable,
+            Criteria criteria) {
         if (pageable != null) {
             if (criteria != null) {
                 return createSelectImpl(
-                    selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()).where(Conditions.just(criteria.toString())),
-                    entityType,
-                    pageable.getSort()
-                );
+                        selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset())
+                                .where(Conditions.just(criteria.toString())),
+                        entityType,
+                        pageable.getSort());
             } else {
                 return createSelectImpl(
-                    selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()),
-                    entityType,
-                    pageable.getSort()
-                );
+                        selectFrom.limitOffset(pageable.getPageSize(), pageable.getOffset()),
+                        entityType,
+                        pageable.getSort());
             }
         } else {
             if (criteria != null) {
@@ -135,8 +140,8 @@ public class EntityManager {
             RelationalPersistentEntity<?> entity = getPersistentEntity(entityType);
             if (entity != null) {
                 Sort sort = updateMapper.getMappedObject(sortParameter, entity);
-                selectFrom =
-                    selectFrom.orderBy(createOrderByFields(Table.create(entity.getTableName()).as(EntityManager.ENTITY_ALIAS), sort));
+                selectFrom = selectFrom.orderBy(
+                        createOrderByFields(Table.create(entity.getTableName()).as(EntityManager.ENTITY_ALIAS), sort));
             }
         }
         return createSelect(selectFrom.build());
@@ -147,7 +152,9 @@ public class EntityManager {
     }
 
     /**
-     * Delete all the entity with the given type, and return the number of deletions.
+     * Delete all the entity with the given type, and return the number of
+     * deletions.
+     * 
      * @param entityType the entity type which holds the table name.
      * @return the number of deleted entity
      */
@@ -157,16 +164,19 @@ public class EntityManager {
 
     /**
      * Delete all the rows from the given table, and return the number of deletions.
+     * 
      * @param tableName the name of the table to delete.
      * @return the number of deleted rows.
      */
     public Mono<Integer> deleteAll(String tableName) {
         StatementMapper.DeleteSpec delete = statementMapper.createDelete(tableName);
-        return r2dbcEntityTemplate.getDatabaseClient().sql(statementMapper.getMappedObject(delete)).fetch().rowsUpdated();
+        return r2dbcEntityTemplate.getDatabaseClient().sql(statementMapper.getMappedObject(delete)).fetch()
+                .rowsUpdated();
     }
 
     /**
      * Generate an actual SQL from the given {@link Select}.
+     * 
      * @param select a representation of a select statement.
      * @return the generated SQL select.
      */
@@ -175,8 +185,10 @@ public class EntityManager {
     }
 
     /**
-     * Inserts the given entity into the database - and sets the id, if it's an autoincrement field.
-     * @param <S> the type of the persisted entity.
+     * Inserts the given entity into the database - and sets the id, if it's an
+     * autoincrement field.
+     * 
+     * @param <S>    the type of the persisted entity.
      * @param entity the entity to be inserted into the database.
      * @return the persisted entity.
      */
@@ -186,38 +198,40 @@ public class EntityManager {
 
     /**
      * Updates the table, which links the entity with the referred entities.
-     * @param table describes the link table, it contains a table name, the column name for the id, and for the referred entity id.
-     * @param entityId the id of the entity, for which the links are created.
+     * 
+     * @param table         describes the link table, it contains a table name, the
+     *                      column name for the id, and for the referred entity id.
+     * @param entityId      the id of the entity, for which the links are created.
      * @param referencedIds the id of the referred entities.
      * @return the number of inserted rows.
      */
     public Mono<Integer> updateLinkTable(LinkTable table, Long entityId, Stream<Long> referencedIds) {
         return deleteFromLinkTable(table, entityId)
-            .then(
-                Flux
-                    .fromStream(referencedIds)
-                    .flatMap((Long referenceId) -> {
-                        StatementMapper.InsertSpec insert = r2dbcEntityTemplate
-                            .getDataAccessStrategy()
-                            .getStatementMapper()
-                            .createInsert(table.tableName)
-                            .withColumn(table.idColumn, Parameter.from(entityId))
-                            .withColumn(table.referenceColumn, Parameter.from(referenceId));
+                .then(
+                        Flux
+                                .fromStream(referencedIds)
+                                .flatMap((Long referenceId) -> {
+                                    StatementMapper.InsertSpec insert = r2dbcEntityTemplate
+                                            .getDataAccessStrategy()
+                                            .getStatementMapper()
+                                            .createInsert(table.tableName)
+                                            .withColumn(table.idColumn, Parameter.from(entityId))
+                                            .withColumn(table.referenceColumn, Parameter.from(referenceId));
 
-                        return r2dbcEntityTemplate.getDatabaseClient().sql(statementMapper.getMappedObject(insert)).fetch().rowsUpdated();
-                    })
-                    .collectList()
-                    .map((List<Integer> updates) -> updates.stream().reduce(Integer::sum).orElse(0))
-            );
+                                    return r2dbcEntityTemplate.getDatabaseClient()
+                                            .sql(statementMapper.getMappedObject(insert)).fetch().rowsUpdated();
+                                })
+                                .collectList()
+                                .map((List<Integer> updates) -> updates.stream().reduce(Integer::sum).orElse(0)));
     }
 
     public Mono<Void> deleteFromLinkTable(LinkTable table, Long entityId) {
         Assert.notNull(entityId, "entityId is null");
         StatementMapper.DeleteSpec deleteSpec = r2dbcEntityTemplate
-            .getDataAccessStrategy()
-            .getStatementMapper()
-            .createDelete(table.tableName)
-            .withCriteria(Criteria.from(Criteria.where(table.idColumn).is(entityId)));
+                .getDataAccessStrategy()
+                .getStatementMapper()
+                .createDelete(table.tableName)
+                .withCriteria(Criteria.from(Criteria.where(table.idColumn).is(entityId)));
         return r2dbcEntityTemplate.getDatabaseClient().sql(statementMapper.getMappedObject(deleteSpec)).then();
     }
 
@@ -226,7 +240,8 @@ public class EntityManager {
 
         for (Sort.Order order : sortToUse) {
             String propertyName = order.getProperty();
-            OrderByField orderByField = OrderByField.from(table.column(propertyName).as(EntityManager.ALIAS_PREFIX + propertyName));
+            OrderByField orderByField = OrderByField
+                    .from(table.column(propertyName).as(EntityManager.ALIAS_PREFIX + propertyName));
 
             fields.add(order.isAscending() ? orderByField.asc() : orderByField.desc());
         }

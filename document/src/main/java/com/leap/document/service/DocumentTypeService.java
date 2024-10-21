@@ -53,14 +53,14 @@ public class DocumentTypeService {
         log.debug("Request to partially update DocumentType : {}", documentTypeDTO);
 
         return documentTypeRepository
-            .findById(documentTypeDTO.getId())
-            .map(existingDocumentType -> {
-                documentTypeMapper.partialUpdate(existingDocumentType, documentTypeDTO);
+                .findById(documentTypeDTO.getId())
+                .map(existingDocumentType -> {
+                    documentTypeMapper.partialUpdate(existingDocumentType, documentTypeDTO);
 
-                return existingDocumentType;
-            })
-            .map(documentTypeRepository::save)
-            .map(documentTypeMapper::toDto);
+                    return existingDocumentType;
+                })
+                .map(documentTypeRepository::save)
+                .map(documentTypeMapper::toDto);
     }
 
     /**

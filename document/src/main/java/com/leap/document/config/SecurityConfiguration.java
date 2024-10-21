@@ -26,10 +26,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final SecurityProblemSupport problemSupport;
 
     public SecurityConfiguration(
-        TokenProvider tokenProvider,
-        JHipsterProperties jHipsterProperties,
-        SecurityProblemSupport problemSupport
-    ) {
+            TokenProvider tokenProvider,
+            JHipsterProperties jHipsterProperties,
+            SecurityProblemSupport problemSupport) {
         this.tokenProvider = tokenProvider;
         this.problemSupport = problemSupport;
         this.jHipsterProperties = jHipsterProperties;

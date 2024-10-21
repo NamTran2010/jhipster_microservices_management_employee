@@ -49,8 +49,8 @@ public class Authority implements Serializable, Persistable<String> {
     @Override
     public String toString() {
         return "Authority{" +
-            "name='" + name + '\'' +
-            "}";
+                "name='" + name + '\'' +
+                "}";
     }
 
     @Override

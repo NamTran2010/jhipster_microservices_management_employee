@@ -53,14 +53,14 @@ public class JobService {
         log.debug("Request to partially update Job : {}", jobDTO);
 
         return jobRepository
-            .findById(jobDTO.getId())
-            .map(existingJob -> {
-                jobMapper.partialUpdate(existingJob, jobDTO);
+                .findById(jobDTO.getId())
+                .map(existingJob -> {
+                    jobMapper.partialUpdate(existingJob, jobDTO);
 
-                return existingJob;
-            })
-            .map(jobRepository::save)
-            .map(jobMapper::toDto);
+                    return existingJob;
+                })
+                .map(jobRepository::save)
+                .map(jobMapper::toDto);
     }
 
     /**

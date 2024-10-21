@@ -8,7 +8,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 /**
- * Base abstract class for entities which will hold definitions for created, last modified, created by,
+ * Base abstract class for entities which will hold definitions for created,
+ * last modified, created by,
  * last modified by attributes.
  */
 public abstract class AbstractAuditingEntity implements Serializable {

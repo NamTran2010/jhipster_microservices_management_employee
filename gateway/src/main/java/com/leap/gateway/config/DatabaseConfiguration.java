@@ -78,7 +78,8 @@ public class DatabaseConfiguration {
     }
 
     /**
-     * Simple singleton to convert {@link UUID}s to their {@link String} representation.
+     * Simple singleton to convert {@link UUID}s to their {@link String}
+     * representation.
      */
     @WritingConverter
     public enum UUIDToStringConverter implements Converter<UUID, String> {
@@ -103,8 +104,10 @@ public class DatabaseConfiguration {
         }
     }
 
-    // LocalDateTime seems to be the only type that is supported across all drivers atm
-    // See https://github.com/r2dbc/r2dbc-h2/pull/139 https://github.com/mirromutth/r2dbc-mysql/issues/105
+    // LocalDateTime seems to be the only type that is supported across all drivers
+    // atm
+    // See https://github.com/r2dbc/r2dbc-h2/pull/139
+    // https://github.com/mirromutth/r2dbc-mysql/issues/105
     @Bean
     public R2dbcCustomConversions r2dbcCustomConversions(R2dbcDialect dialect) {
         List<Object> converters = new ArrayList<>(dialect.getConverters());
@@ -119,9 +122,8 @@ public class DatabaseConfiguration {
         converters.add(UUIDToStringConverter.INSTANCE);
         converters.addAll(R2dbcCustomConversions.STORE_CONVERTERS);
         return new R2dbcCustomConversions(
-            CustomConversions.StoreConversions.of(dialect.getSimpleTypeHolder(), converters),
-            Collections.emptyList()
-        );
+                CustomConversions.StoreConversions.of(dialect.getSimpleTypeHolder(), converters),
+                Collections.emptyList());
     }
 
     @Bean
