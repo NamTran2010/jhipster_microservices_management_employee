@@ -1,5 +1,6 @@
 package com.leap.employee.web.rest;
 
+import com.leap.employee.domain.JobHistory;
 import com.leap.employee.repository.JobHistoryRepository;
 import com.leap.employee.service.JobHistoryService;
 import com.leap.employee.service.dto.JobHistoryDTO;
@@ -178,10 +179,9 @@ public class JobHistoryResource {
         return ResponseUtil.wrapOrNotFound(jobHistoryDTO);
     }
 
-    // Name CODE
-    // Get job histories by employee ID
+    // NAM CODE
 
-    // Name CODE
+    // NAM CODE
 
     /**
      * {@code DELETE  /job-histories/:id} : delete the "id" jobHistory.
