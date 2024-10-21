@@ -13,5 +13,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface JobHistoryRepository extends JpaRepository<JobHistory, Long> {
-    List<JobHistory> findByEmployeeId(Long employeeId); // Phương thức tìm kiếm job histories theo employee ID
+    // Method to find job histories by employee ID
+    List<JobHistory> findByEmployeeId(Long employeeId);
 }

@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A Employee.
@@ -43,6 +45,9 @@ public class Employee implements Serializable {
     @ManyToOne
     private Department department;
 
+    // Xoá hết jobHistory khi xoá employee
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<JobHistory> jobHistories = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -123,7 +128,8 @@ public class Employee implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -138,7 +144,8 @@ public class Employee implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -146,10 +153,10 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "Employee{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", hireDate='" + getHireDate() + "'" +
-            ", salary=" + getSalary() +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                ", hireDate='" + getHireDate() + "'" +
+                ", salary=" + getSalary() +
+                "}";
     }
 }
