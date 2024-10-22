@@ -6,6 +6,7 @@
 - Helpdesk can create/edit/update documents related to employees. Only helpdesk has admin role can do this action
 
 2. Task List
+
    Task 1: Use Jhipster to generate code
 
 - Make sure you're using Jhipster v7.3.0
@@ -20,3 +21,21 @@
 - Make sure every listing API can do pagination and sorting
 - Make sure API is protected by a gateway
 - Make sure CRUD API related to document is only valid for Role_Admin and employee
+
+  Task 2: Add Salary Field in entity Job History data
+
+- Create a custom method to handle tracking jobs
+- Update employee create new job history
+- Make sure when we fail in creating job history, no update for employee
+- Create new employee, need create job history?
+
+  Task 3: Add document service in our JDL file
+
+  - Document Table and DocumentType Table
+  - Make sure document service using h2 as dev database
+
+  Task 4: Create frontend for helpdesk can do CRUD Document operation on Employee while editing the employee entity
+
+  Task 5: Update backend codebase for Document service
+
+3.  Solution & Tips
