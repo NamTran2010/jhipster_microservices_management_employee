@@ -89,9 +89,11 @@ public class JobHistoryService {
         return jobHistoryRepository.findById(id).map(jobHistoryMapper::toDto);
     }
 
-    // NAM CODE
+    // Tìm kiếm JobHistory theo employeeId
+    public List<JobHistory> findByEmployeeId(Long employeeId) {
+        return jobHistoryRepository.findByEmployeeId(employeeId);
+    }
 
-    // NAM CODE
     /**
      * Delete the jobHistory by id.
      *

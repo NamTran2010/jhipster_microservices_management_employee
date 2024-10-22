@@ -156,6 +156,7 @@ public class JobHistoryResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
      *         of jobHistories in body.
      */
+
     @GetMapping("/job-histories")
     public ResponseEntity<List<JobHistoryDTO>> getAllJobHistories(Pageable pageable) {
         log.debug("REST request to get a page of JobHistories");
@@ -179,9 +180,12 @@ public class JobHistoryResource {
         return ResponseUtil.wrapOrNotFound(jobHistoryDTO);
     }
 
-    // NAM CODE
-
-    // NAM CODE
+    // Lấy JobHistory theo employeeId
+    @GetMapping("/job-histories/employee/{employeeId}")
+    public ResponseEntity<List<JobHistory>> getJobHistoriesByEmployeeId(@PathVariable Long employeeId) {
+        List<JobHistory> list = jobHistoryService.findByEmployeeId(employeeId);
+        return ResponseEntity.ok(list);
+    }
 
     /**
      * {@code DELETE  /job-histories/:id} : delete the "id" jobHistory.
