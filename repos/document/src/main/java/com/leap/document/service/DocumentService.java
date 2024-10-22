@@ -4,6 +4,8 @@ import com.leap.document.domain.Document;
 import com.leap.document.repository.DocumentRepository;
 import com.leap.document.service.dto.DocumentDTO;
 import com.leap.document.service.mapper.DocumentMapper;
+
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,6 +87,11 @@ public class DocumentService {
     public Optional<DocumentDTO> findOne(Long id) {
         log.debug("Request to get Document : {}", id);
         return documentRepository.findById(id).map(documentMapper::toDto);
+    }
+
+    // Lấy danh sách document theo employeeId
+    public List<Document> findByEmployeeId(Long employeeId) {
+        return documentRepository.findByEmployeeId(employeeId);
     }
 
     /**
