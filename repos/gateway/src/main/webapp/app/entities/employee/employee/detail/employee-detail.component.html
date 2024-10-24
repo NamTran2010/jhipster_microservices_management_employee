@@ -39,11 +39,13 @@
           </div>
         </dd>
       </dl>
+      <!-- Nút "View Job History" -->
       <div>
-        <button class="btn btn-warning" style="margin-bottom: 10px">Job History</button>
+        <button class="btn btn-success" style="margin-bottom: 10px" [routerLink]="['histories']">View Job History</button>
       </div>
+      <!-- Nút "Document" -->
       <div>
-        <button class="btn btn-success" style="margin-bottom: 10px">Document</button>
+        <button class="btn btn-warning" style="margin-bottom: 10px" onclick="window.location.href='/document'">Document</button>
       </div>
       <div>
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
