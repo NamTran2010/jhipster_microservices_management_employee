@@ -43,6 +43,32 @@
       <div>
         <button class="btn btn-success" style="margin-bottom: 10px" (click)="handleClick()">View Job History</button>
       </div>
+      <!-- Bảng hiển thị job history -->
+      <div *ngIf="showJobHistory">
+        <h3>Job History of {{ employee.name }}</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Start Date</th>
+              <th>Salary</th>
+              <th>Job</th>
+              <th>Department</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let jobHistory of jobHistories">
+              <td>{{ jobHistory.id }}</td>
+              <td>{{ jobHistory.startDate }}</td>
+              <td>{{ jobHistory.salary }}</td>
+              <td>{{ jobHistory.job?.jobName }}</td>
+              <!-- Truy cập thuộc tính jobTitle -->
+              <td>{{ jobHistory.department?.departmentName }}</td>
+              <!-- Truy cập thuộc tính departmentName -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <!-- Nút "Document" -->
       <div>
         <button class="btn btn-warning" style="margin-bottom: 10px" onclick="window.location.href='/document'">Document</button>

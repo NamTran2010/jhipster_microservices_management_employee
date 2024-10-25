@@ -10,6 +10,8 @@ import { EmployeeService } from '../service/employee.service';
 })
 export class EmployeeDetailComponent implements OnInit {
   employee: IEmployee | null = null;
+  jobHistories: any[] = []; // Biến để lưu dữ liệu job histories
+  showJobHistory = false; // Biến để điều khiển hiển thị bảng
 
   constructor(protected activatedRoute: ActivatedRoute, private employeeService: EmployeeService) {}
 
@@ -24,10 +26,15 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   handleClick(): void {
+    this.showJobHistory = !this.showJobHistory; // Toggle hiển thị bảng
+    if (!this.showJobHistory) {
+      return; // Nếu bảng đang hiển thị thì ẩn bảng mà không cần gọi API lại
+    }
+
     const employeeId = this.employee?.id;
     if (employeeId) {
       this.employeeService.getJobHistoriesForEmployee(employeeId).subscribe(jobHistory => {
-        console.warn(jobHistory);
+        this.jobHistories = jobHistory;
       });
     }
   }
