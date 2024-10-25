@@ -180,7 +180,7 @@ public class EmployeeResource {
 
     /**
      * {@code DELETE  /employees/:id} : delete the "id" employee.
-     *
+     * 
      * @param id the id of the employeeDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */

@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IEmployee, getEmployeeIdentifier } from '../employee.model';
+import { JobHistory } from '../../job-history/job-history.model';
 
 export type EntityResponseType = HttpResponse<IEmployee>;
 export type EntityArrayResponseType = HttpResponse<IEmployee[]>;
@@ -16,9 +17,13 @@ export type EntityArrayResponseType = HttpResponse<IEmployee[]>;
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/employees', 'employee');
+  protected jobHistoryUrl = this.applicationConfigService.getEndpointFor('api', 'employee');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
+  public getJobHistoriesForEmployee(employeeId: number): Observable<JobHistory[]> {
+    return this.http.get<JobHistory[]>(`${this.jobHistoryUrl}/job-histories/employee/${employeeId}`);
+  }
   create(employee: IEmployee): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(employee);
     return this.http

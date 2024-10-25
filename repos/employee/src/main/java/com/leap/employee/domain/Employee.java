@@ -46,7 +46,7 @@ public class Employee implements Serializable {
     private Department department;
 
     // Xoá hết jobHistory khi xoá employee
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<JobHistory> jobHistories = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here
 

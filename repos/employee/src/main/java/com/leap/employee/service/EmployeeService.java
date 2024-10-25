@@ -137,6 +137,7 @@ public class EmployeeService {
     @Transactional(readOnly = true)
     public Optional<EmployeeDTO> findOne(Long id) {
         log.debug("Request to get Employee : {}", id);
+        System.out.println(">>>>>>>>>>>" + employeeRepository.findById(id));
         return employeeRepository.findById(id).map(employeeMapper::toDto);
     }
 
