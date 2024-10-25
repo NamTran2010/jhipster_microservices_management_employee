@@ -181,8 +181,8 @@ public class DocumentResource {
 
     @GetMapping("documents/employee/{employeeId}")
     public ResponseEntity<List<Document>> getDocumentsByeEmployeeId(@PathVariable Long employeeId) {
-        List<Document> list = documentService.findByEmployeeId(employeeId);
-        return ResponseEntity.ok(list);
+        List<Document> documents = documentService.findByEmployeeId(employeeId);
+        return ResponseEntity.ok(documents);
     }
 
     /**
