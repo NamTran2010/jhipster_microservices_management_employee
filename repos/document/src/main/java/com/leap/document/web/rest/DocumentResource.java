@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
  * REST controller for managing {@link com.leap.document.domain.Document}.
@@ -58,6 +59,7 @@ public class DocumentResource {
      *         the document has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/documents")
     public ResponseEntity<DocumentDTO> createDocument(@Valid @RequestBody DocumentDTO documentDTO)
             throws URISyntaxException {
@@ -86,6 +88,7 @@ public class DocumentResource {
      *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/documents/{id}")
     public ResponseEntity<DocumentDTO> updateDocument(
             @PathVariable(value = "id", required = false) final Long id,
@@ -126,6 +129,7 @@ public class DocumentResource {
      *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping(value = "/documents/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<DocumentDTO> partialUpdateDocument(
             @PathVariable(value = "id", required = false) final Long id,
@@ -191,6 +195,7 @@ public class DocumentResource {
      * @param id the id of the documentDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/documents/{id}")
     public ResponseEntity<Void> deleteDocument(@PathVariable Long id) {
         log.debug("REST request to delete Document : {}", id);

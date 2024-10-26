@@ -9,6 +9,7 @@ import { IDocument } from '../document.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { DocumentService } from '../service/document.service';
 import { DocumentDeleteDialogComponent } from '../delete/document-delete-dialog.component';
+// import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-document',
@@ -23,13 +24,15 @@ export class DocumentComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  // isAdmin = false;
 
   constructor(
     protected documentService: DocumentService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
-  ) {}
+  ) // private accountService: AccountService
+  {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -54,6 +57,10 @@ export class DocumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.accountService.getAuthenticationState().subscribe(account => {
+    //   console.log(account);
+    //   this.isAdmin = account?.authorities?.includes('ROLE_ADMIN') ?? false;
+    // });
     this.handleNavigation();
   }
 
